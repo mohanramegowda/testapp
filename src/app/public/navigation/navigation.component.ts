@@ -16,4 +16,7 @@ export class NavigationComponent implements OnInit {
     this.toggleIcon = !this.toggleIcon
   }
 
+  MobileMenuSelected(){
+    this.toggle();
+  }
 }

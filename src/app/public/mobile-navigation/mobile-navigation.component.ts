@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'mobile-navigation',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mobile-navigation.component.scss']
 })
 export class MobileNavigationComponent implements OnInit {
-
   constructor() { }
 
+  @Output() SelectedMenuItem = new EventEmitter<boolean>();
+
   ngOnInit() {
+  }
+
+  SelectMenuItem(selected:boolean){
+    this.SelectedMenuItem.emit(true);
   }
 
 }
