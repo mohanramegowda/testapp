@@ -1,5 +1,8 @@
-<button type="button" id="mobile-nav-toggle" (click)="toggleBars($event)">
-  <i class="fa fa-bars"></i>
+<button type="button" id="mobile-nav-toggle" (click)="toggle()">
+  <i class="fa" [ngClass]="{
+    'fa-close':toggleIcon === false,
+    'fa-bars':toggleIcon === true
+  }"></i>
 </button>
 <header id="header">
   <div>
@@ -19,25 +22,25 @@
         <li><a href="#team">Team</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-              Dropdown button
-            </a>
-            <div class="dropdown-menu">
-              <h5 class="dropdown-header">Dropdown header</h5>
-              <button class="dropdown-item">
-                <span>Link 1</span>
-              </button>
-              <button class="dropdown-item">
-                  <span>Link 2</span>
-                </button>
-              <button class="dropdown-item">
-                  <span>Link 3</span>
-                </button>
-              <h5 class="dropdown-header">Dropdown header</h5>
-              <button class="dropdown-item" href="#">
-                  <span>Another link</span>
-                </button>
-            </div>
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            Dropdown button
+          </a>
+          <div class="dropdown-menu">
+            <h5 class="dropdown-header">Dropdown header</h5>
+            <button class="dropdown-item">
+              <span>Link 1</span>
+            </button>
+            <button class="dropdown-item">
+              <span>Link 2</span>
+            </button>
+            <button class="dropdown-item">
+              <span>Link 3</span>
+            </button>
+            <h5 class="dropdown-header">Dropdown header</h5>
+            <button class="dropdown-item" href="#">
+              <span>Another link</span>
+            </button>
+          </div>
         </li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
