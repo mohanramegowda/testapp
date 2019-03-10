@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy, Input } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations';
 
-type PaneType = 'left' | 'right';
-
 @Component({
   selector: 'mobile-navigation',
   templateUrl: './mobile-navigation.component.html',
@@ -29,7 +27,6 @@ export class MobileNavigationComponent implements OnInit, OnDestroy {
   @Output() SelectedMenuItem = new EventEmitter<boolean>();
 
   ngOnInit() {
-    //this.ShowingMobileNavigation = true;
   }
 
   SelectMenuItem(){
@@ -39,5 +36,4 @@ export class MobileNavigationComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.ShowingMobileNavigation = false;
   }
-
 }
