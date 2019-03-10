@@ -1,8 +1,8 @@
 <button type="button" id="mobile-nav-toggle" (click)="toggle()">
   <span class="fa mobile-nav-active" [ngClass]="{
-    'fa-times':toggleIcon === false,
-    'fa-bars':toggleIcon === true,
-    'mobile-nav-active':toggleIcon === false
+    'fa-times':toggleIcon === true,
+    'fa-bars':toggleIcon === false,
+    'mobile-nav-active':toggleIcon === true
   }"></span>
 </button>
 <header id="header">
@@ -49,5 +49,5 @@
     </nav><!-- #nav-menu-container -->
   </div>
 </header>
-<mobile-navigation *ngIf="!toggleIcon" (SelectedMenuItem)="MobileMenuSelected()" ></mobile-navigation>
-<div id="mobile-body-overly" *ngIf="!toggleIcon" style="display: block;" (click)="toggle()"></div>
+<mobile-navigation *ngIf="toggleIcon" (SelectedMenuItem)="MobileMenuSelected()" ></mobile-navigation>
+<div id="mobile-body-overly" *ngIf="toggleIcon" style="display: block;" (click)="toggle()"></div>

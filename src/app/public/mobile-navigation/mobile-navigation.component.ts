@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
+type PaneType = 'left' | 'right';
+
 @Component({
   selector: 'mobile-navigation',
   templateUrl: './mobile-navigation.component.html',
@@ -13,7 +15,7 @@ export class MobileNavigationComponent implements OnInit {
   ngOnInit() {
   }
 
-  SelectMenuItem(selected:boolean){
+  SelectMenuItem(){
     this.SelectedMenuItem.emit(true);
   }
 

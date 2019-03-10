@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  toggleIcon:boolean = true;
+  toggleIcon:boolean = false;
   constructor() { }
 
   ngOnInit() {
