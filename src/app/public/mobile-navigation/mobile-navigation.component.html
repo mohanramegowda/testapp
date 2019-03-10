@@ -1,4 +1,4 @@
-<nav id="mobile-nav">
+<nav id="mobile-nav" *ngIf="ShowingMobileNavigation" [@enterAnimation]>
   <ul>
     <li class="menu-active"><a href="#hero" (click)="SelectMenuItem()">Home</a></li>
     <li><a href="#about-us" (click)="SelectMenuItem()">About</a></li>

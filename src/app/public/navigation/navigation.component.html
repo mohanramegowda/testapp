@@ -49,5 +49,5 @@
     </nav><!-- #nav-menu-container -->
   </div>
 </header>
-<mobile-navigation *ngIf="toggleIcon" (SelectedMenuItem)="MobileMenuSelected()" ></mobile-navigation>
+<mobile-navigation [ShowingMobileNavigation]="toggleIcon" (SelectedMenuItem)="MobileMenuSelected()" ></mobile-navigation>
 <div id="mobile-body-overly" *ngIf="toggleIcon" style="display: block;" (click)="toggle()"></div>
