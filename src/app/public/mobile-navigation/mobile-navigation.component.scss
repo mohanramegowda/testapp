@@ -28,7 +28,6 @@
     text-decoration: none;    
     font-family: 'Poppins', sans-serif;
     font-weight: 550;
-    font-size: 14px;
     letter-spacing: 0;
     transition: 0.3s;
   }   
@@ -40,4 +39,16 @@
 .dropdown-menu > button > span{
   margin-top: 5px;
   margin-left: 20px
+}
+
+.sign-in {
+  margin: 10px;
+  text-align: center;
+}
+
+.sign-in button {
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 2px;
 }
