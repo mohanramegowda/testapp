@@ -2,38 +2,39 @@
   <ul>
     <li>
       <div class="sign-in">
-        <button class="btn btn-success">
+        <button class="btn btn-success" (click)="SelectMenuItem()">
           Sign in/Register
         </button>
       </div>
     </li>
     <li class="menu-active"><a href="#hero" (click)="SelectMenuItem()">Home</a></li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+          Your Products
+        </a>
+        <div class="dropdown-menu">
+            <h5 class="dropdown-header">On Product Category</h5>
+            <button class="dropdown-item" (click)="SelectMenuItem()">
+              <span>Show All Product Categories</span>
+            </button>
+            <button class="dropdown-item" (click)="SelectMenuItem()">
+              <span>Add Product Category</span>
+            </button>
+
+            <h5 class="dropdown-header">On Products</h5>
+            <button class="dropdown-item" (click)="SelectMenuItem()">
+              <span>Show All Products</span>
+            </button>
+            <button class="dropdown-item" (click)="SelectMenuItem()">
+              <span>Add Product</span>
+            </button>
+        </div>
+      </li>
     <li><a href="#about-us" (click)="SelectMenuItem()">About</a></li>
     <li><a href="#features" (click)="SelectMenuItem()">Features</a></li>
     <li><a href="#screenshots" (click)="SelectMenuItem()">Screenshots</a></li>
     <li><a href="#team" (click)="SelectMenuItem()">Team</a></li>
     <li><a href="#pricing" (click)="SelectMenuItem()">Pricing</a></li>
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown">
-        Dropdown button
-      </a>
-      <div class="dropdown-menu">
-        <h5 class="dropdown-header">Dropdown header</h5>
-        <button class="dropdown-item" (click)="SelectMenuItem()">
-          <span>Link 1</span>
-        </button>
-        <button class="dropdown-item" (click)="SelectMenuItem()">
-          <span>Link 2</span>
-        </button>
-        <button class="dropdown-item" (click)="SelectMenuItem()">
-          <span>Link 3</span>
-        </button>
-        <h5 class="dropdown-header">Dropdown header</h5>
-        <button class="dropdown-item" href="#" (click)="SelectMenuItem()">
-          <span>Another link</span>
-        </button>
-      </div>
-    </li>
     <li><a href="#blog" (click)="SelectMenuItem()">Blog</a></li>
     <li><a href="#contact" (click)="SelectMenuItem()">Contact</a></li>
   </ul>

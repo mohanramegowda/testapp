@@ -10,11 +10,11 @@ import { trigger, transition, animate, style } from '@angular/animations';
       'enterAnimation', [
         transition(':enter', [
           style({transform: 'translateX(-100%)'}),
-          animate('500ms', style({transform: 'translateX(0)'}))
+          animate('400ms', style({transform: 'translateX(0)'}))
         ]),
         transition(':leave', [
           style({transform: 'translateX(0)'}),
-          animate('500ms', style({transform: 'translateX(-100%)'}))
+          animate('400ms', style({transform: 'translateX(-100%)'}))
         ])
       ]
     )
