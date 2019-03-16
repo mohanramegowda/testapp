@@ -45,12 +45,36 @@
               </button>
             </div>
           </li>
+          <!--nested drop down-->
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Tutorials
+          </a>
+          <div class="dropdown-menu">
+            <li><a tabindex="-1" href="#">HTML</a></li>
+            <li><a tabindex="-1" href="#">CSS</a></li>
+            <li class="dropdown-submenu">
+              <a class="test dropdown-toggle" tabindex="-1" href="#">New dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                <li class="dropdown-submenu">
+                  <a class="test dropdown-toggle" href="#">Another dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">3rd level dropdown</a></li>
+                    <li><a href="#">3rd level dropdown</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </div>
+        </li>
+        <!--/end of nested drop down-->
         <li><a href="#about-us">About</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>        
         <li><a href="#team">Team</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#blog">Blog</a></li>
+        <li><a href="#blog">Blog</a></li>        
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav><!-- #nav-menu-container -->
