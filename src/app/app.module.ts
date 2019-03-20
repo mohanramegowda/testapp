@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './public/navigation/navigation.component';
 import { MobileNavigationComponent } from './public/mobile-navigation/mobile-navigation.component';
@@ -15,8 +15,8 @@ import { MobileNavigationComponent } from './public/mobile-navigation/mobile-nav
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule
+    routing,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

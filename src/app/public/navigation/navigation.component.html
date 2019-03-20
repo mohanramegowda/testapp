@@ -1,8 +1,8 @@
 <button type="button" id="mobile-nav-toggle" (click)="toggle()">
   <span class="fa mobile-nav-active" [ngClass]="{
-    'fa-times':toggleIcon === true,
-    'fa-bars':toggleIcon === false,
-    'mobile-nav-active':toggleIcon === true
+    'fa-times':toggleIcon,
+    'fa-bars':!toggleIcon,
+    'mobile-nav-active':toggleIcon
   }"></span>
 </button>
 <header id="header">
@@ -23,7 +23,7 @@
             </a>
             <div class="dropdown-menu">
               <div class="sign-in">
-                <button class="btn btn-success">
+                <button class="btn btn-success" routerLink="user">
                   Sign in/Register
                 </button>
               </div>

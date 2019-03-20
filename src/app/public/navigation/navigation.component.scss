@@ -59,11 +59,6 @@
   z-index: 99;
 }
 
-.nav-menu li {
-  /* position: relative; */
-  /* white-space: nowrap; */
-}
-
 .nav-menu > li {
   float: left;
 }
@@ -107,7 +102,7 @@
   margin: 5px 0 0 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1054px) {
   #nav-menu-container {
     display: none;
   }
@@ -196,11 +191,11 @@
   top: 0;
   left: 0;
   position: fixed;
-  background: rgba(52, 59, 64, 0.9);
+  background: rgba(125, 138, 148, 0.9);
   display: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1054px) {
   #mobile-nav-toggle {
     display: inline;
   }
