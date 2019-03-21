@@ -7,8 +7,8 @@ import { routing } from './user.routing';
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
   imports: [
-    routing,
-    CommonModule
+    CommonModule,
+    routing    
   ]
 })
 export class UserModule { }
