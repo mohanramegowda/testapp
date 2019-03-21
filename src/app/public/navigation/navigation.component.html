@@ -24,8 +24,11 @@
             <div class="dropdown-menu">
               <div class="sign-in">
                 <button class="btn btn-success" routerLink="login">
-                  Sign in/Register
+                  {{Authentication}}
                 </button>
+                <button class="btn btn-success" (click)="logout()">
+                    Logout
+                  </button>
               </div>
   
               <h5 class="dropdown-header">On Product Category</h5>

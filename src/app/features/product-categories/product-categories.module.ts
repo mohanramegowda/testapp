@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProductCategoriesComponent } from './product-categories/product-categories.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ProductCategoriesComponent],
   imports: [
     CommonModule
   ]
