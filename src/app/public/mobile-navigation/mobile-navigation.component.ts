@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy, Input } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mobile-navigation',
@@ -21,7 +23,8 @@ import { trigger, transition, animate, style } from '@angular/animations';
   ]
 })
 export class MobileNavigationComponent implements OnInit, OnDestroy {
-  constructor() { }
+  constructor(private router: Router,
+    private authenticationService: AuthenticationService) { }
   @Input() ShowingMobileNavigation:boolean = false;
 
   @Output() SelectedMenuItem = new EventEmitter<boolean>();
@@ -31,6 +34,15 @@ export class MobileNavigationComponent implements OnInit, OnDestroy {
 
   SelectMenuItem(){
     this.SelectedMenuItem.emit(true);
+  }
+
+  toggleAuthentication() {
+    
+    if (this.authenticationService.currentUserValue) {
+      this.authenticationService.logout();
+    }
+    this.SelectMenuItem();
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy(){

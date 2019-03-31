@@ -2,8 +2,8 @@
   <ul>
     <li>
       <div class="sign-in">
-        <button class="btn btn-success" (click)="SelectMenuItem()" routerLink="login">
-          Sign in/Register
+        <button class="btn btn-success" (click)="toggleAuthentication()">
+          {{'' | authentication}}
         </button>
       </div>
     </li>
@@ -14,7 +14,7 @@
         <a data-toggle="collapse" class="dropdown-toggle dropdown-item" data-target="#onProductCategory">On Product
           Categroy</a>
         <div id="onProductCategory" class="collapse">
-          <button class="dropdown-item" (click)="SelectMenuItem()">
+          <button class="dropdown-item" (click)="SelectMenuItem()" routerLink="product-categories">
             Show All Product Categories
           </button>
           <button class="dropdown-item" (click)="SelectMenuItem()">

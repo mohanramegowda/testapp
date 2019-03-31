@@ -11,13 +11,15 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { ErrorInterceptor } from './core/helpers/error-intercesptor';
 import { mockBackendProvider } from './core/helpers/mock-backend';
 import { AlertComponent } from './public/alert/alert.component';
+import { AuthenticationPipe } from './shared/pipes/authentication.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     MobileNavigationComponent,
-    AlertComponent
+    AlertComponent,
+    AuthenticationPipe
   ],
   imports: [
     BrowserModule,

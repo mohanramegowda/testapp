@@ -23,16 +23,13 @@
             </a>
             <div class="dropdown-menu">
               <div class="sign-in">
-                <button class="btn btn-success" routerLink="login">
-                  {{Authentication}}
+                <button class="btn btn-success" (click)="toggleAuthentication()">
+                  {{'' | authentication}}
                 </button>
-                <button class="btn btn-success" (click)="logout()">
-                    Logout
-                  </button>
               </div>
   
               <h5 class="dropdown-header">On Product Category</h5>
-              <button class="dropdown-item">
+              <button class="dropdown-item" routerLink="product-categories">
                 <span>Show All Product Categories</span>
               </button>
               <button class="dropdown-item">

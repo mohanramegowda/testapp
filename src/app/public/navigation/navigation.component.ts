@@ -9,12 +9,10 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class NavigationComponent implements OnInit {
   toggleIcon: boolean = false;
-  Authentication: string = "Sign in/Register";
   constructor(private router: Router,
     private authenticationService: AuthenticationService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   toggle() {
     this.toggleIcon = !this.toggleIcon
@@ -24,9 +22,10 @@ export class NavigationComponent implements OnInit {
     this.toggle();
   }
 
-  logout() {
-    this.authenticationService.logout();
+  toggleAuthentication() {
+    if (this.authenticationService.currentUserValue) {
+      this.authenticationService.logout();
+    }
     this.router.navigate(['/login']);
   }
-
 }
