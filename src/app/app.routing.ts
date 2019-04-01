@@ -8,6 +8,11 @@ const routes: Routes = [
     path: 'product-categories',
     loadChildren: '../app/features/product-categories/product-categories.module#ProductCategoriesModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'products',
+    loadChildren: '../app/features/products/products.module#ProductsModule',
+    canActivate: [AuthGuard]
   }
 ]
 
