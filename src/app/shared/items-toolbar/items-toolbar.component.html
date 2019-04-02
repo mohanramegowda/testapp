@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <div class="block-pricing">
+      <div class="table">
+
+          <div class="btn-group">
+              <a class="dropdown-toggle" data-toggle="dropdown">
+                {{sort}}
+              </a>
+              <div class="dropdown-menu">
+                <button class="dropdown-item" *ngFor="let sort of sortings" (click)="changeSorting(sort)">
+                    {{sort}}
+                </button>
+              </div>
+            </div>
+    
+    
+    
+            <div class="btn-group">
+              <a class="dropdown-toggle" data-toggle="dropdown">
+                Show {{count}}
+              </a>
+              <div class="dropdown-menu">
+                <button class="dropdown-item" *ngFor="let count of counts" (click)="changeCount(count)">
+                  {{count}}
+                </button>
+              </div>
+            </div>
+    
+            <span class="menu-container" (click)="changeViewType('grid')"><i class="fa fa-th"></i></span>
+            <span class="menu-container" (click)="changeViewType('list')"><i class="fa fa-list"></i></span>
+
+      </div>
+    </div>
+  </div>
+</div>

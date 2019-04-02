@@ -1,0 +1,22 @@
+.btn-group{    
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.menu-container {
+    float: right;
+    margin-left:15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #757575
+  }
+
+  .btn-group, .dropdown-item{
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: #757575
+  }
+  
