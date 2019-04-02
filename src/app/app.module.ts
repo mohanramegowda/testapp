@@ -12,6 +12,7 @@ import { ErrorInterceptor } from './core/helpers/error-intercesptor';
 import { mockBackendProvider } from './core/helpers/mock-backend';
 import { AlertComponent } from './public/alert/alert.component';
 import { AuthenticationPipe } from './shared/pipes/authentication.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthenticationPipe } from './shared/pipes/authentication.pipe';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     routing,
     BrowserAnimationsModule,
     HttpClientModule
