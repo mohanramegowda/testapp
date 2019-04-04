@@ -1,0 +1,30 @@
+.text-center {
+  text-align: center;
+}
+
+.product-pagination {
+  background-color: #fff;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.19);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #757575;
+}
+
+.ngx-pagination{
+    padding: 12px 0px;
+    margin: 0;
+}
+
+pagination-controls .ngx-pagination li.current {
+  background-color: #28a745;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+pagination-controls .ngx-pagination a {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: #757575
+}
