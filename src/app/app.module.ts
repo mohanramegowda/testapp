@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FieldConfigurationEngineComponent } from './shared/components/field-configuration-engine/field-configuration-engine.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FieldConfigurationEngineComponent
   ],
   imports: [
     BrowserModule,
