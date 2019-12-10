@@ -9,13 +9,29 @@ import { SubmissionItemComponent } from './components/submission-item/submission
 import { HeaderComponent } from './components/header/header.component';
 import { AuthenticationPipePipe } from './pipes/authentication-pipe.pipe';
 import { DeleteThisDirectiveDirective } from './directives/delete-this-directive.directive';
-
-
+import { MaterialModule } from './material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [MainSidebarComponent, SecondSidebarComponent, TemplateListComponent, SubmissionListComponent, TemplateItemComponent, SubmissionItemComponent, HeaderComponent, AuthenticationPipePipe, DeleteThisDirectiveDirective],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MaterialModule,
+    RouterModule,
+
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MaterialModule,
+    RouterModule
   ]
 })
 export class SharedModule { }
