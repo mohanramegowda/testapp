@@ -6,16 +6,9 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 const routes: Routes = [
   {
     path: '',
-    component: ContentLayoutComponent,
-    pathMatch: 'full',
-    children: [
-      {
-        path: 'home',
-        loadChildren: () =>
-          import('@modules/home/home.module').then(m => m.HomeModule)
-      },
-    ]
-  },
+    loadChildren: () =>
+      import('@layout/layout.module').then(m => m.LayoutModule)
+  }
 ];
 
 @NgModule({

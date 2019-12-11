@@ -27,6 +27,9 @@
       ],
       "@modules/*": [
         "app/modules/*"
+      ],
+      "@layout/*":[
+        "app/layout/*"
       ]
     },
     "lib": [

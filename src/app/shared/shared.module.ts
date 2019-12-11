@@ -13,9 +13,14 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FieldConfigurationEngineComponent } from './components/field-configuration-engine/field-configuration-engine.component';
 
 @NgModule({
-  declarations: [MainSidebarComponent, SecondSidebarComponent, TemplateListComponent, SubmissionListComponent, TemplateItemComponent, SubmissionItemComponent, HeaderComponent, AuthenticationPipePipe, DeleteThisDirectiveDirective],
+  declarations: [MainSidebarComponent, FieldConfigurationEngineComponent,
+    SecondSidebarComponent, TemplateListComponent,
+    SubmissionListComponent, TemplateItemComponent,
+    SubmissionItemComponent, HeaderComponent, AuthenticationPipePipe,
+    DeleteThisDirectiveDirective],
   imports: [
     CommonModule,
     FormsModule,
