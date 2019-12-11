@@ -1,0 +1,20 @@
+
+  
+  .box-container {
+    box-sizing: border-box;
+    
+  }
+  
+  .swiper-container {
+    position: absolute;
+    max-height: 50%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .swiper-slide-active {
+    color: #fff;
+    background-color: #aaa;
+  }

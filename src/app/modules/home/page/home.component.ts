@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  public slides = [
+    { title: 'The biggest sale', subtitle: 'Special for today',  },
+    { title: 'Summer collection', subtitle: 'New Arrivals On Sale', },
+    { title: 'The biggest sale', subtitle: 'Special for today',  },
+    { title: 'Summer collection', subtitle: 'New Arrivals On Sale', },
+    { title: 'The biggest sale', subtitle: 'Special for today',  }
+  ];
   constructor() { }
 
   ngOnInit() {

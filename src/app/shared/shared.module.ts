@@ -12,18 +12,22 @@ import { DeleteThisDirectiveDirective } from './directives/delete-this-directive
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FieldConfigurationEngineComponent } from './components/field-configuration-engine/field-configuration-engine.component';
+import { MainCarouselComponent } from './components/main-carousel/main-carousel.component';
 
 @NgModule({
   declarations: [MainSidebarComponent, FieldConfigurationEngineComponent,
     SecondSidebarComponent, TemplateListComponent,
     SubmissionListComponent, TemplateItemComponent,
     SubmissionItemComponent, HeaderComponent, AuthenticationPipePipe,
-    DeleteThisDirectiveDirective],
+    DeleteThisDirectiveDirective,
+    MainCarouselComponent],
   imports: [
     CommonModule,
     FormsModule,
+    SwiperModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
@@ -36,7 +40,9 @@ import { FieldConfigurationEngineComponent } from './components/field-configurat
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    SwiperModule,
+    MainCarouselComponent
   ]
 })
 export class SharedModule { }

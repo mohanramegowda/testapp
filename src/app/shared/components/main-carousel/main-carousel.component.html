@@ -1,0 +1,16 @@
+<div class="box-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+    <swiper class="swiper-container" [config]="config" fxFlex="auto">
+        <div *ngFor="let slide of slides" class="swiper-slide">
+            <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                <div class="slide-item swiper-lazy">
+                    
+                    <div fxLayout="column" fxLayoutAlign="center center" class="content">
+                        <h1>{{slide.title}}</h1>
+                        <h3>{{slide.subtitle}}</h3>
+                        <button mat-raised-button color="primary">Shop now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </swiper>
+</div>
