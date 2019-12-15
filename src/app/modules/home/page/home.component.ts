@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,13 @@ export class HomeComponent implements OnInit {
     { title: 'Summer collection', subtitle: 'New Arrivals On Sale', },
     { title: 'The biggest sale', subtitle: 'Special for today',  }
   ];
-  constructor() { }
+  constructor(private router: Router, ) { }
 
   ngOnInit() {
+  }
+
+  onGetStartedClick(){
+    this.router.navigate(['get-started']);
   }
 
 }

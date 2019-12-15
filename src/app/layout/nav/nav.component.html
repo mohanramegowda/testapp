@@ -1,10 +1,10 @@
-<div style="height: 100vh;">
+<div>
     <mat-toolbar color="primary">
         <a fxShow="true" fxHide.gt-sm="true" (click)="sidenav.toggle()">
             <i class="material-icons">dehaze</i>
         </a>
         <span>
-            Test nav
+            Enroll
         </span>
         <span class="example-spacer"></span>
         <div fxShow="true" fxHide.lt-md="true">
@@ -22,8 +22,8 @@
                 </a>
             </div>
         </mat-sidenav>
-        <mat-sidenav-content fxFlexFill>
+        <div fxFlexFill>
             <router-outlet></router-outlet>
-        </mat-sidenav-content>
+        </div>
     </mat-sidenav-container>
 </div>

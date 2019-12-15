@@ -23,33 +23,34 @@ export class MainCarouselComponent implements OnInit {
 
   private pagination: SwiperPaginationInterface = {
     el: '.swiper-pagination',
-    clickable: true,
-    hideOnClick: false
+    clickable: true
   };
 
-  public config: SwiperConfigInterface = {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    keyboard: true,
-    navigation: true,
-    pagination: this.pagination,
-    grabCursor: true,
-    loop: false,
-    preloadImages: false,
-    lazy: true,
-    autoplay: {
-      delay: 6000,
-      disableOnInteraction: false
-    },
-    speed: 500,
-    effect: "slide"
-  };
+  public config: SwiperConfigInterface = {};
 
   constructor() {
 
   }
 
-
+  ngAfterViewInit() {
+    this.config = {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      keyboard: true,
+      navigation: true,
+      pagination: this.pagination,
+      grabCursor: true,
+      loop: false,
+      preloadImages: false,
+      lazy: true,
+      autoplay: {
+        delay: 6000,
+        disableOnInteraction: false
+      },
+      speed: 500,
+      effect: "slide"
+    }
+  }
 
 
 

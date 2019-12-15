@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetStartedComponent implements OnInit {
 
+  public slides = [
+    { title: 'The biggest sale', subtitle: 'Special for today', },
+    { title: 'Summer collection', subtitle: 'New Arrivals On Sale', },
+    { title: 'The biggest sale', subtitle: 'Special for today', },
+    { title: 'Summer collection', subtitle: 'New Arrivals On Sale', },
+    { title: 'The biggest sale', subtitle: 'Special for today', }
+  ];
+
   constructor() { }
 
   ngOnInit() {

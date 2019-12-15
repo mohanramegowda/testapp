@@ -1,1 +1,33 @@
-<app-main-carousel [slides]="slides"></app-main-carousel> 
+<div class="box-container">
+  <app-main-carousel [slides]="slides"></app-main-carousel>
+</div>
+
+<div class="container" fxLayoutAlign="center center">
+  <div class="describer" fxLayout fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <div fxFlex="50%">
+      <h1>
+        The freedom to create school application form platform, the way you want
+      </h1>
+    </div>
+    <div fxFlex="50%">
+      <div class="describer-content">
+        Define and build your own high quality school application portal. Take advantage of our School Application
+        Creation
+        console to select the application form fields of your choice and create a form the way you want.
+      </div>
+      <div>
+
+        <div class="describer-link" (click)="onGetStartedClick()">
+          <div class="describer-link-text">            
+              Get Started            
+          </div>
+          <div>
+             >
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
