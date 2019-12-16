@@ -20,4 +20,8 @@ export class GetStartedComponent implements OnInit {
   ngOnInit() {
   }
 
+  onGetStartedClick(){
+
+  }
+
 }

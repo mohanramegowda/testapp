@@ -13,16 +13,37 @@ li {
   color: black;
 }
 
-.box-container{
-    margin-top: 60px;
+.box-container {
+  margin-top: 60px;
 }
 
-button{
-  font-size: 2.4rem;
-  padding: 15px;
-  border-color:darkblue !important;
+button {
+  font-size: 1.5rem;
+  padding: 10px 25px;
+  border-color: darkblue !important;
   border-width: 2px;
   margin-bottom: 20%;
-  margin-top: 20px;
+  margin-top: 10px;
   border-radius: 25px;
+}
+
+.describer-link,
+.describer-link-text {
+  color: black;
+  border-color: black;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.describer-link {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.describer-link:active{
+  border: none;
+  outline: none;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent
 }
