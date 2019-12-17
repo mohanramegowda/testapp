@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
     { title: 'Summer collection', subtitle: 'New Arrivals On Sale', },
     { title: 'The biggest sale', subtitle: 'Special for today',  }
   ];
-  constructor(private router: Router, ) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  onGetStartedClick(){
+  onGetStartedClick() {
     this.router.navigate(['get-started']);
   }
 

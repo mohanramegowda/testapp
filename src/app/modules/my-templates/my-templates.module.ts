@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { MyTemplatesComponent } from './page/my-templates/my-templates.component';
+import { SharedModule } from '@shared/shared.module';
+import { MyTemplatesRoutingModule } from './my-templates.routing';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [MyTemplatesComponent],
   imports: [
-    CommonModule
+    SharedModule,
+    MyTemplatesRoutingModule
   ]
 })
 export class MyTemplatesModule { }

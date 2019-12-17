@@ -26,6 +26,12 @@ export const routes: Routes = [
                 path: 'learn-more',
                 loadChildren: () =>
                     import('@modules/learn-more/learn-more.module').then(m => m.LearnMoreModule)
+            },
+            {
+                path: 'creation-console',
+                loadChildren: () =>
+                    import('@modules/school-application-creation-console/school-application-creation-console.module')
+                    .then(m => m.SchoolApplicationCreationConsoleModule)
             }
         ]
     },

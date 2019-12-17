@@ -42,15 +42,15 @@
 </div>
 
 <div fxLayoutAlign="center center" fxLayout="row wrap" >
-    <div class="font-2" fxFlex="95%">
+    <div class="font-2" fxFlex.sm="95%" fxFlex.xs="95%">
         Ready to get started?
     </div>
 </div>
 <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <button mat-stroked-button>
+    <button mat-stroked-button (click)="onGetStartedClick()">
         Yes?
     </button>
-    <button class="describer-link" (click)="onGetStartedClick()">
+    <button class="describer-link">
         <div class="describer-link-text">
             Learn more
         </div>

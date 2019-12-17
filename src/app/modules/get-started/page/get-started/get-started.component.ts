@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-started',
@@ -15,13 +16,13 @@ export class GetStartedComponent implements OnInit {
     { title: 'The biggest sale', subtitle: 'Special for today', }
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  onGetStartedClick(){
-
+  onGetStartedClick() {
+    this.router.navigate(['creation-console']);
   }
 
 }

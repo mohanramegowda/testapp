@@ -1,29 +1,30 @@
-<div>
-    <mat-toolbar color="primary">
-        <a fxShow="true" fxHide.gt-sm="true" (click)="sidenav.toggle()">
+<mat-toolbar color="primary">
+    <!-- <a fxShow="true" fxHide.gt-sm="true" (click)="sidenav.toggle()">
             <i class="material-icons">dehaze</i>
-        </a>
-        <span>
-            Enroll
-        </span>
-        <span class="example-spacer"></span>
-        <div fxShow="true" fxHide.lt-md="true">
-            <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-            <a mat-button *ngFor="let navItem of navItems" [routerLink]="[navItem.link]">{{navItem.title}}</a>
-        </div>
-    </mat-toolbar>
+        </a> -->
+    <button mat-icon-button fxShow="true" fxHide.gt-sm="true" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>
+        Enroll
+    </span>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <a mat-button *ngFor="let navItem of navItems" [routerLink]="[navItem.link]">{{navItem.title}}</a>
+    </div>
+</mat-toolbar>
 
-    <mat-sidenav-container fxFlexFill class="example-container">
-        <mat-sidenav #sidenav fxLayout="column">
-            <div fxLayout="column">
-                <a (click)="sidenav.toggle()" mat-button>Close</a>
-                <a mat-button *ngFor="let navItem of navItems" [routerLink]="[navItem.link]">
-                    {{navItem.title}}
-                </a>
-            </div>
-        </mat-sidenav>
-        <div fxFlexFill>
-            <router-outlet></router-outlet>
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav fxLayout="column">
+        <div fxLayout="column">
+            <a (click)="sidenav.toggle()" mat-button>Close</a>
+            <a mat-button *ngFor="let navItem of navItems" [routerLink]="[navItem.link]">
+                {{navItem.title}}
+            </a>
         </div>
-    </mat-sidenav-container>
-</div>
+    </mat-sidenav>
+    <div fxFlexFill>
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>

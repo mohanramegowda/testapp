@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SubmissionsComponent } from './page/submissions/submissions.component';
+import { SharedModule } from '@shared/shared.module';
+import { SubmissionsRoutingModule } from './submission.routing';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [SubmissionsComponent],
   imports: [
-    CommonModule
+    SharedModule,
+    SubmissionsRoutingModule
   ]
 })
 export class SubmissionsModule { }
