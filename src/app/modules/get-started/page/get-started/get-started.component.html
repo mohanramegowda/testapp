@@ -1,61 +1,63 @@
-<div class="describer" fxLayout="row wrap" fxLayoutGap="10px" fxLayoutGap.xs="0" fxLayoutAlign="center start">
-    <div fxFlex="55%" fxFlex.sm="95%" fxFlex.xs="95%">
-        <h2 class="font-2">
-            Benefits of using our console
-        </h2>
-        <ol>
-            <li>
-                Receive the applications from the applicants who are interested to join your school.
-            </li>
-            <li>
-                Sign up in our portal with your school name
-            </li>
-            <li>
-                Use your own school's logo and branding
-            </li>
-            <li>
-                Publish your school admission's application portal, created using our console
-                and share it anywhere.
-            </li>
-            <li>
-                Allow your applicants to sign up with the portal you have created using our console.
-            </li>
-            <li>
-                Customise the details you need from your applicants and allow your applicants
-                to submit their details to you. Edit the details you have cutomised anytime.
-            </li>
-            <li>
-                Registered applicants can submit any number of applications considering that they are allowed
-                to apply for themselves as well as on behald of others.
-            </li>
-            <li>
-                Collect application fee if the "Application Fee" option is selected by you during the portal
-                creation.
-            </li>
-        </ol>
-    </div>
-    <div fxFlex="35%" fxFlex.sm="95%" fxFlex.xs="95%">
-        <div class="box-container">
-            <app-main-carousel [slides]="slides"></app-main-carousel>
+<div class="container">
+    <div class="describer" fxLayout="row wrap" fxLayoutGap="10px" fxLayoutGap.xs="0" fxLayoutAlign="center start">
+        <div fxFlex="55%" fxFlex.sm="95%" fxFlex.xs="95%">
+            <h2 class="font-2">
+                Benefits of using our console
+            </h2>
+            <ol>
+                <li>
+                    Receive the applications from the applicants who are interested to join your school.
+                </li>
+                <li>
+                    Sign up in our portal with your school name
+                </li>
+                <li>
+                    Use your own school's logo and branding
+                </li>
+                <li>
+                    Publish your school admission's application portal, created using our console
+                    and share it anywhere.
+                </li>
+                <li>
+                    Allow your applicants to sign up with the portal you have created using our console.
+                </li>
+                <li>
+                    Customise the details you need from your applicants and allow your applicants
+                    to submit their details to you. Edit the details you have cutomised anytime.
+                </li>
+                <li>
+                    Registered applicants can submit any number of applications considering that they are allowed
+                    to apply for themselves as well as on behald of others.
+                </li>
+                <li>
+                    Collect application fee if the "Application Fee" option is selected by you during the portal
+                    creation.
+                </li>
+            </ol>
+        </div>
+        <div fxFlex="35%" fxFlex.sm="95%" fxFlex.xs="95%">
+            <div class="box-container">
+                <app-main-carousel [slides]="slides"></app-main-carousel>
+            </div>
         </div>
     </div>
-</div>
 
-<div fxLayoutAlign="center center" fxLayout="row wrap" >
-    <div class="font-2" fxFlex.sm="95%" fxFlex.xs="95%">
-        Ready to get started?
+    <div fxLayoutAlign="center center" fxLayout="row wrap">
+        <div class="font-2" fxFlex.sm="95%" fxFlex.xs="95%">
+            Ready to get started?
+        </div>
     </div>
-</div>
-<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <button mat-stroked-button (click)="onGetStartedClick()">
-        Yes?
-    </button>
-    <button class="describer-link">
-        <div class="describer-link-text">
-            Learn more
-        </div>
-        <div>
-            >
-        </div>
-    </button>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button mat-stroked-button (click)="onGetStartedClick()">
+            Yes?
+        </button>
+        <button class="describer-link">
+            <div class="describer-link-text">
+                Learn more
+            </div>
+            <div>
+                >
+            </div>
+        </button>
+    </div>
 </div>
