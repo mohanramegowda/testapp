@@ -6,7 +6,7 @@
         <mat-icon>menu</mat-icon>
     </button>
     <span>
-        Enroll
+        Navigation bar
     </span>
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
@@ -15,12 +15,13 @@
     </div>
 </mat-toolbar>
 
-
-<mat-sidenav #sidenav fxLayout="column">
-    <div fxLayout="column">
-        <a (click)="sidenav.toggle()" mat-button>Close</a>
-        <a mat-button *ngFor="let navItem of navItems" [routerLink]="[navItem.link]">
-            {{navItem.title}}
-        </a>
-    </div>
-</mat-sidenav>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav fxLayout="column">
+        <div fxLayout="column">
+            <a (click)="sidenav.toggle()" mat-button>Close</a>
+            <a mat-button *ngFor="let navItem of navItems" [routerLink]="[navItem.link]">
+                {{navItem.title}}
+            </a>
+        </div>
+    </mat-sidenav>
+</mat-sidenav-container>

@@ -1,5 +1,5 @@
 
-    <mat-toolbar>
+    <mat-toolbar fxFlexFill>
         <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
@@ -16,7 +16,7 @@
                 </a>
             </mat-nav-list>
         </mat-sidenav>
-        <div class="full-height">
+        <mat-sidenav-content fxFlexFill>
             <router-outlet></router-outlet>
-        </div>
+        </mat-sidenav-content>
     </mat-sidenav-container>
