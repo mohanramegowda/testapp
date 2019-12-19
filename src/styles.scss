@@ -42,3 +42,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif}
   .container {
     padding-bottom: 20%;
   }
+
+  .mat-drawer-container-ext{
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    display: block;
+    overflow: none;
+  }
+  
+  .mat-drawer-content-ext{
+    position: relative;
+    z-index: 1;
+    display: block;
+    height: 100%;
+    overflow: none;
+  }

@@ -1,5 +1,5 @@
 
-    <mat-toolbar fxFlexFill>
+    <mat-toolbar>
         <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
@@ -16,6 +16,7 @@
                 </a>
             </mat-nav-list>
         </mat-sidenav>
+        <!--Todo remove this and move it outside of the mat-sidenav-container-->
         <mat-sidenav-content fxFlexFill>
             <router-outlet></router-outlet>
         </mat-sidenav-content>
