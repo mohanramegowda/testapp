@@ -42,7 +42,9 @@ import { MainCarouselComponent } from './components/main-carousel/main-carousel.
     MaterialModule,
     RouterModule,
     SwiperModule,
-    MainCarouselComponent
+    MainCarouselComponent,
+    TemplateListComponent,
+    SubmissionListComponent
   ]
 })
 export class SharedModule { }

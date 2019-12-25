@@ -1,1 +1,15 @@
-<p>template-list works!</p>
+<div *ngFor="let template of templateList">
+    <mat-divider></mat-divider>
+    <div class="template-item">
+        <span  fxLayoutAlign="start center" class="school-title">
+            {{template.title}}
+        </span>
+        <span fxFlex></span>
+        <span fxLayoutAlign="end center">
+            <button mat-icon-button matTooltip="Clear">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </span>
+    </div>    
+</div>
+<mat-divider></mat-divider>

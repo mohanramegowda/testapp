@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-school-application-creation-console',
@@ -7,11 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchoolApplicationCreationConsoleComponent implements OnInit {
 
+  @ViewChild('sidenav', {static: false}) sideNav: MatSidenav;
   navItems = [
-    { link: 'dashboard', title: 'Dashboard', icon: 'dashboard' },
-    { link: 'my-templates', title: 'My Templates', icon: 'folder' },
-    { link: 'users', title: 'Users', icon: 'people' },
-    { link: 'submissions', title: 'Submissions', icon: 'play_for_work' }
+
   ];
 
   constructor() { }
@@ -19,4 +18,16 @@ export class SchoolApplicationCreationConsoleComponent implements OnInit {
   ngOnInit() {
   }
 
+  onMenuClick() {
+    if(this.sideNav){
+      this.navItems = [
+        { link: 'dashboard', title: 'Dashboard', icon: 'dashboard' },
+        { link: 'my-templates', title: 'My Templates', icon: 'folder' },
+        { link: 'users', title: 'Users', icon: 'people' },
+        { link: 'submissions', title: 'Submissions', icon: 'play_for_work' }
+      ];
+
+      this.sideNav.toggle();
+    }    
+  }
 }
