@@ -1,7 +1,41 @@
-<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutGap.xs="0" fxLayoutAlign="center start">
-    <div fxFlex.sm="95%" fxFlex.xs="95%">
-        <h1>
-            My Template works
-        </h1>
+<div fxLayout="column" fxLayoutAlign="space-around stretch">
+    <!-- <app-template-list [templateList]="templateList"></app-template-list> -->
+
+    <div *ngFor="let template of templateList">
+        <mat-divider></mat-divider>
+        <div class="template-item">
+            <span fxLayoutAlign="start center" class="school-title">
+                {{template.title}}
+            </span>
+            <span fxFlex></span>
+            <span fxLayoutAlign="end center">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>publish</mat-icon>
+                        <span>Publish</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>remove_red_eye</mat-icon>
+                        <span>Preview</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>play_for_work</mat-icon>
+                        <span>Submissions</span>
+                    </button>
+                </mat-menu>
+            </span>
+        </div>
     </div>
+    <mat-divider></mat-divider>
 </div>

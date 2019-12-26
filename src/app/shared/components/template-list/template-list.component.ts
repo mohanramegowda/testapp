@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-template-list',
@@ -7,18 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateListComponent implements OnInit {
 
-  templateList = [{
-    title: 'Swarga Rani'
-  },
-  {
-    title: 'NPS'
-  },
-  {
-    title: 'Baldvin'
-  },
-{
-  title:'Gnana Ganga Vidhya Peetha'
-}];
+  @Input('templateList') templateList: Array<any> = [];
+
   constructor() { }
 
   ngOnInit() {

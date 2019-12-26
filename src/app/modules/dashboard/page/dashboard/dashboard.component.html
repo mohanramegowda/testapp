@@ -2,7 +2,7 @@
     <div fxFlex.sm="95%" fxFlex.xs="95%">
         <mat-tab-group>
             <mat-tab label="Recent Templates">
-                <app-template-list></app-template-list>
+                <app-template-list [templateList]="templateList"></app-template-list>
             </mat-tab>
             <mat-tab label="Recent Submissions">
                 <app-submission-list></app-submission-list>

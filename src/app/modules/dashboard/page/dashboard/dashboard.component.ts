@@ -7,6 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  templateList = [{
+    title: 'Swarga Rani'
+  },
+  {
+    title: 'NPS'
+  },
+  {
+    title: 'Baldvin'
+  },
+  {
+    title: 'Gnana Ganga Vidhya Peetha'
+  }];
+
   constructor() { }
 
   ngOnInit() {
