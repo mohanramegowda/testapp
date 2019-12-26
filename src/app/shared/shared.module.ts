@@ -44,7 +44,8 @@ import { MainCarouselComponent } from './components/main-carousel/main-carousel.
     SwiperModule,
     MainCarouselComponent,
     TemplateListComponent,
-    SubmissionListComponent
+    SubmissionListComponent,
+    FieldConfigurationEngineComponent
   ]
 })
 export class SharedModule { }

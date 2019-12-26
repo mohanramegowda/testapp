@@ -5,6 +5,7 @@ import { TemplateConsoleRoutingModule } from './template-console.routing';
 
 
 
+
 @NgModule({
   declarations: [TemplateConsoleComponent],
   imports: [

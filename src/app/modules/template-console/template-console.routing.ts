@@ -6,7 +6,26 @@ import { TemplateConsoleComponent } from './page/template-console/template-conso
 export const routes: Routes = [
     {
         path: '',
-        component: TemplateConsoleComponent
+        component: TemplateConsoleComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'login-registration',
+                pathMatch: 'full'
+            },
+            {
+                path: 'login-registration',
+                loadChildren: () =>
+                    import('@modules/template-console/components/login-registration/login-registration.module')
+                        .then(m => m.LoginRegistrationModule)
+            },
+            {
+                path: 'school-application-form',
+                loadChildren: () =>
+                    import('@modules/template-console/components/school-application-form/school-application-form/school-application-form.module')
+                        .then(m => m.SchoolApplicationFormModule)
+            }
+        ]
     }
 ];
 
