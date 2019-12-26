@@ -24,7 +24,8 @@ export class SchoolApplicationCreationConsoleComponent implements OnInit {
         { link: 'dashboard', title: 'Dashboard', icon: 'dashboard' },
         { link: 'my-templates', title: 'My Templates', icon: 'folder' },
         { link: 'users', title: 'Users', icon: 'people' },
-        { link: 'submissions', title: 'Submissions', icon: 'play_for_work' }
+        { link: 'submissions', title: 'Submissions', icon: 'play_for_work' },
+        { link: 'template-console', title: 'Template Console', icon: 'play_for_work' }
       ];
 
       this.sideNav.toggle();

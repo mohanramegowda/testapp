@@ -27,6 +27,11 @@ export const routes: Routes = [
         path: 'submissions',
         loadChildren: () =>
           import('@modules/submissions/submissions.module').then(m => m.SubmissionsModule)
+      },
+      {
+        path: 'template-console',
+        loadChildren: () => 
+        import('@modules/template-console/template-console.module').then(m => m.TemplateConsoleModule)
       }
     ]
   }

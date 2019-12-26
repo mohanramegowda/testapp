@@ -1,0 +1,66 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="[nav.link]" *ngFor="let nav of navItems" (click)="sidenav.toggle()">
+                <mat-icon>{{nav.icon}}</mat-icon>
+                {{nav.title}}
+                <mat-divider></mat-divider>
+            </a>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon *ngIf="!drawer.opened">
+                <svg aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); 
+                    transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                    <path d="M5.59 7.41L7 6l6 6l-6 6l-1.41-1.41L10.17 12L5.59 7.41m6 0L13 
+                        6l6 6l-6 6l-1.41-1.41L16.17 12l-4.58-4.59z" fill="#626262" /></svg>
+            </mat-icon>
+            <mat-icon *ngIf="drawer.opened">
+                <svg aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); 
+                    transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                    <path d="M18.41 7.41L17 6l-6 6l6 6l1.41-1.41L13.83 12l4.58-4.59m-6 0L11 6l-6 6l6 
+                        6l1.41-1.41L7.83 12l4.58-4.59z" fill="#626262" /></svg>
+            </mat-icon>
+        </button>
+        <div fxFlexFill>
+            <!-- <router-outlet></router-outlet> -->
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            <p>s</p>
+            
+        </div>
+    </div>
+</mat-drawer-container>

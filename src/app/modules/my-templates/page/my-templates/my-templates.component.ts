@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-my-templates',
@@ -19,10 +20,13 @@ export class MyTemplatesComponent implements OnInit {
   {
     title: 'Gnana Ganga Vidhya Peetha'
   }];
-  
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  OnCreateNewTemplate() {
+    this.router.navigate(['creation-console/template-console']);
+  }
 }
