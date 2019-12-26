@@ -1,7 +1,23 @@
-<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutGap.xs="0" fxLayoutAlign="center start">
-        <div fxFlex.sm="95%" fxFlex.xs="95%">
-            <h1>
-                Submissions works
-            </h1>
+<div fxLayout="column" fxLayoutAlign="space-around stretch">
+    <div *ngFor="let submission of submissionList">
+        <mat-divider></mat-divider>
+        <div class="template-item">
+            <span fxLayoutAlign="start center" class="school-title">
+                <mat-card-title>
+                    {{submission.title}}
+                    <span class="total-submission">
+                        {{submission.totalSubmission}} total submission
+                    </span>
+                </mat-card-title>               
+            </span>
+            <span fxFlex></span>
+            <span fxLayoutAlign="end center">
+                <button mat-icon-button>
+                    <mat-icon>remove_red_eye</mat-icon>
+                </button>
+            </span>
         </div>
     </div>
+    <mat-divider></mat-divider>
+</div>
+<br/>
