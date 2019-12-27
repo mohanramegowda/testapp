@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddFieldDialogComponent } from '@shared/components/add-field-dialog/add-field-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-registration',
@@ -63,6 +64,9 @@ export class LoginRegistrationComponent implements OnInit {
       ]
     },
   ]
+
+  subscription: Subscription;
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -71,8 +75,37 @@ export class LoginRegistrationComponent implements OnInit {
   OnCreateNewTemplate() {
     const dialogRef = this.dialog.open(AddFieldDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {      
-      this.fields.push(result)
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.fields.push(result);
+      }
+    });
+  }
+
+  OnActions(event) {
+    if (event) {
+      switch (event.mode) {
+        case 'Edit':
+          this.editTemplate();
+          break;
+        case 'Delete':
+          this.fields.splice(this.fields.indexOf(event.field), 1);
+          break;
+      }
+    }
+    console.log(event);
+  }
+
+  private editTemplate() {
+    // todo write logic to edit exsting item in the array and send field to dialog
+    const dialogRef = this.dialog.open(AddFieldDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.fields.push(result);
+      }
     });
   }
 }

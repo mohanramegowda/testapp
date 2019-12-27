@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-field-configuration-engine',
@@ -8,8 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FieldConfigurationEngineComponent implements OnInit {
 
   @Input('fields') fields: Array<any> = [];
+  @Output() emitter = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onActionsClick(mode: string, field: any) {
+    this.emitter.emit({
+      field: field,
+      mode: mode
+    });
   }
 }

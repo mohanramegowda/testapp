@@ -54,7 +54,7 @@ export class AddFieldDialogComponent implements OnInit {
         name: new FormControl('', [Validators.required]),
         type: new FormControl('', [Validators.required]),
         label: new FormControl('', [Validators.required]),
-        defaultValue: new FormControl('', [Validators.required]),
+        defaultValue: new FormControl(''),
         validation: new FormControl([])
       }
     )

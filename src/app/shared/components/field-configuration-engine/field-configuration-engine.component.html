@@ -31,10 +31,10 @@
         </div>
         <mat-divider [vertical]="true"></mat-divider>
         <div fxFlex="8%" fxLayoutAlign="center center">
-            <button mat-icon-button matTooltip="Edit">
+            <button mat-icon-button matTooltip="Edit" (click)="onActionsClick('Edit', field)">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button matTooltip="Delete">
+            <button mat-icon-button matTooltip="Delete" (click)="onActionsClick('Delete', field)">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>
