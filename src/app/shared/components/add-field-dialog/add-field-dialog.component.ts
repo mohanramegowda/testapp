@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Validators } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
-export interface DialogData 
-{
+export interface DialogData {
   name: string,
   type: string, // select in add-field html
   label: string,
@@ -28,10 +27,38 @@ export interface DialogData
 })
 export class AddFieldDialogComponent implements OnInit {
 
-  validations: string[] = ['email', 'maxLength', 'minLength', 'required'];
+  validations = [
+    {
+      name: 'email',
+      message: 'Invalid Email'
+    },
+    {
+      name: 'maxLength',
+      message: 'Number of Charactors exceeds the limit'
+    },
+    {
+      name: 'minLength',
+      message: 'Insufficient number of charactors'
+    },
+    {
+      name: 'required',
+      message: 'This Field is required'
+    }
+  ];
 
+  //fieldType = new FormControl('', [Validators.required]);
   constructor(public dialogRef: MatDialogRef<AddFieldDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public form: FormGroup) {
+    this.form = new FormGroup(
+      {
+        name: new FormControl('', [Validators.required]),
+        type: new FormControl('', [Validators.required]),
+        label: new FormControl('', [Validators.required]),
+        defaultValue: new FormControl('', [Validators.required]),
+        validation: new FormControl([])
+      }
+    )
+  }
 
   ngOnInit() {
   }

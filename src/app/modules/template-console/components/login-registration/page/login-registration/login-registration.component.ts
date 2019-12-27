@@ -71,9 +71,8 @@ export class LoginRegistrationComponent implements OnInit {
   OnCreateNewTemplate() {
     const dialogRef = this.dialog.open(AddFieldDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
+    dialogRef.afterClosed().subscribe(result => {      
+      this.fields.push(result)
     });
   }
 }
