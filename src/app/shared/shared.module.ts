@@ -16,6 +16,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FieldConfigurationEngineComponent } from './components/field-configuration-engine/field-configuration-engine.component';
 import { MainCarouselComponent } from './components/main-carousel/main-carousel.component';
+import { AddFieldDialogComponent } from './components/add-field-dialog/add-field-dialog.component';
 
 @NgModule({
   declarations: [MainSidebarComponent, FieldConfigurationEngineComponent,
@@ -23,7 +24,8 @@ import { MainCarouselComponent } from './components/main-carousel/main-carousel.
     SubmissionListComponent, TemplateItemComponent,
     SubmissionItemComponent, HeaderComponent, AuthenticationPipePipe,
     DeleteThisDirectiveDirective,
-    MainCarouselComponent],
+    MainCarouselComponent,
+    AddFieldDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -45,7 +47,11 @@ import { MainCarouselComponent } from './components/main-carousel/main-carousel.
     MainCarouselComponent,
     TemplateListComponent,
     SubmissionListComponent,
-    FieldConfigurationEngineComponent
+    FieldConfigurationEngineComponent,
+    AddFieldDialogComponent
+  ],
+  entryComponents: [
+    AddFieldDialogComponent
   ]
 })
 export class SharedModule { }

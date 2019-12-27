@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Add new Field</h1>
+<div mat-dialog-content>
+    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
+        fxLayoutAlign="center">
+        <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+            <mat-form-field appearance="fill">
+                <mat-label>Field Name</mat-label>
+                <input matInput placeholder="Field Name">
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+            <mat-form-field appearance="fill">
+                <mat-label>Field Type</mat-label>
+                <input matInput placeholder="Field Type">
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+            <mat-form-field appearance="fill">
+                <mat-label>Field Label</mat-label>
+                <input matInput placeholder="Field Label">
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+            <mat-form-field appearance="fill">
+                <mat-label>Default Value</mat-label>
+                <input matInput placeholder="Default Value">
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <h3 mat-dialog-title class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+            Select Field's Validations
+        </h3>
+        <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+            <mat-selection-list #shoes>
+                <mat-list-option *ngFor="let validation of validations">
+                    {{validation}}
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
+
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="end">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    <!-- [mat-dialog-close]="data.animal" -->
+</div>

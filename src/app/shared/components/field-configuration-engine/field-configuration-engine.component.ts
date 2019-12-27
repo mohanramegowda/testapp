@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-field-configuration-engine',
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FieldConfigurationEngineComponent implements OnInit {
 
+  @Input('fields') fields: Array<any> = [];
   constructor() { }
 
   ngOnInit() {
   }
-
 }

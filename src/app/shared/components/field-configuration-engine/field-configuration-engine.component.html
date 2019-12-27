@@ -1,25 +1,33 @@
-<mat-card class="card-margin">
+<mat-card class="card-margin" *ngFor="let field of fields">
     <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
         fxLayoutGap.xs="15px" fxLayoutGap.sm="15px">
         <div fxFlex="23%" fxLayoutAlign="center center">
             <span>Field name: </span>
-            <span><strong>FieldName</strong></span>
+            <span><strong>{{field.label}}</strong></span>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
         <div fxFlex="23%" fxLayoutAlign="center center">
             <span>Field Type: </span>
-            <span><strong>FieldTypedsadsadasddsddsds fdsfsdfs fdsf s FieldTypedsadsadasddsddsds fdsfsdfs fdsf
-                    s</strong></span>
+            <span><strong>{{field.type}}</strong></span>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
         <div fxFlex="23%" fxLayoutAlign="center center">
             <span>Default Value: </span>
-            <span><strong>DefaultValue</strong></span>
+            <span>
+                <strong *ngIf="field.defaultValue">{{field.defaultValue}}</strong>
+                <strong *ngIf="!field.defaultValue">--blank--</strong>
+            </span>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
         <div fxFlex="23%" fxLayoutAlign="center center">
-            <span>Validation: </span>
-            <span><strong>Validation</strong></span>
+            <span>Validations: </span>
+            <span>
+                <strong *ngIf="field.validation">
+                    <ng-container *ngFor="let validation of field.validation">
+                        {{validation.name}}
+                    </ng-container>
+                </strong>
+            </span>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
         <div fxFlex="8%" fxLayoutAlign="center center">
@@ -32,47 +40,3 @@
         </div>
     </div>
 </mat-card>
-
-<mat-card class="card-margin">
-    <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
-        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px">
-        <div fxFlex="23%" fxLayoutAlign="center center">
-            <span>Field name: </span>
-            <span><strong>FieldName</strong></span>
-        </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="23%" fxLayoutAlign="center center">
-            <span>Field Type: </span>
-            <span><strong>FieldType
-                    s</strong></span>
-        </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="23%" fxLayoutAlign="center center">
-            <span>Default Value: </span>
-            <span><strong>DefaultValue</strong></span>
-        </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="23%" fxLayoutAlign="center center">
-            <span>Validation: </span>
-            <span><strong>Validation</strong></span>
-        </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="8%" fxLayoutAlign="center center">
-            <button mat-icon-button matTooltip="Edit">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button matTooltip="Delete">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </div>
-</mat-card>
-
-<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <button mat-stroked-button class="stroked-button" 
-    (click)="OnCreateNewTemplate()"
-    fxLayoutAlign="center center">
-        <mat-icon>add</mat-icon>
-        Add Field
-    </button>
-</div>
