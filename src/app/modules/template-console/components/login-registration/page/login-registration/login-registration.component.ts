@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { AddFieldDialogComponent } from '@shared/components/add-field-dialog/add-field-dialog.component';
 import { Subscription } from 'rxjs';
 
@@ -76,7 +76,6 @@ export class LoginRegistrationComponent implements OnInit {
     const dialogRef = this.dialog.open(AddFieldDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.fields.push(result);
       }
@@ -87,24 +86,23 @@ export class LoginRegistrationComponent implements OnInit {
     if (event) {
       switch (event.mode) {
         case 'Edit':
-          this.editTemplate();
+          this.editTemplate(event.field);
           break;
         case 'Delete':
           this.fields.splice(this.fields.indexOf(event.field), 1);
           break;
       }
     }
-    console.log(event);
   }
 
-  private editTemplate() {
-    // todo write logic to edit exsting item in the array and send field to dialog
-    const dialogRef = this.dialog.open(AddFieldDialogComponent);
-
+  private editTemplate(data) {
+    const i = this.fields.indexOf(data);
+    const dialogRef = this.dialog.open(AddFieldDialogComponent, {
+      data: data
+    });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
-        this.fields.push(result);
+        this.fields[i] = result;
       }
     });
   }

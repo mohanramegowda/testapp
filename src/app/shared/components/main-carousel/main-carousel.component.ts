@@ -55,7 +55,6 @@ export class MainCarouselComponent implements OnInit {
 
 
   public onIndexChange(index: number) {
-    console.log('Swiper index: ', index);
   }
 
 }

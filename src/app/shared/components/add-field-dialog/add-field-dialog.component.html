@@ -54,7 +54,7 @@
                 Select Field's Validations
             </h3>
             <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
-                <mat-selection-list formControlName="validation">
+                <mat-selection-list [compareWith]="compare" formControlName="validation">
                     <mat-list-option *ngFor="let validation of validations" [value]="validation">
                         {{validation.name}}
                     </mat-list-option>
@@ -66,10 +66,9 @@
 </form>
 
 <div mat-dialog-actions fxLayoutAlign="end">
-    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onNoClick()">Close</button>
     <button mat-button [mat-dialog-close]="form.getRawValue()" 
-    cdkFocusInitial [disabled]="form.invalid">
+    [disabled]="form.invalid">
         Ok
     </button>
-    <!-- [mat-dialog-close]="data.animal" -->
 </div>
