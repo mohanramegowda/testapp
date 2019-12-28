@@ -1,1 +1,39 @@
-<p>school-applocation-form works!</p>
+<div class="full-height">
+    <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
+        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" *ngFor="let section of sections">
+        <div fxFlex="93%" fxFlex.xs="96%" fxFlex.sm="96%" fxLayoutAlign="center center">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title fxLayoutAlign="start center">
+                        <mat-card-title>{{section.title}}</mat-card-title>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <button mat-icon-button matTooltip="Edit">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Delete">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-field-configuration-engine [fields]="section.fields" (emitter)="OnActions($event, section)">
+                </app-field-configuration-engine>
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+                    <button mat-stroked-button class="stroked-button" (click)="OnAddNewField(section)"
+                        fxLayoutAlign="center center">
+                        <mat-icon>add</mat-icon>
+                        Add Field
+                    </button>
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button mat-stroked-button class="stroked-button" (click)="OnAddNewSection()" fxLayoutAlign="center center">
+            <mat-icon>add</mat-icon>
+            Add New Section
+        </button>
+    </div>
+</div>

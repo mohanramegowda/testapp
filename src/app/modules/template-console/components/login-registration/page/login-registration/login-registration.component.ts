@@ -72,7 +72,7 @@ export class LoginRegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
-  OnCreateNewTemplate() {
+  OnAddNewField() {
     const dialogRef = this.dialog.open(AddFieldDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {

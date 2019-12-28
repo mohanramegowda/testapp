@@ -1,23 +1,25 @@
-<div fxLayout="column" fxLayoutAlign="space-around stretch">
-    <div *ngFor="let submission of submissionList">
-        <mat-divider></mat-divider>
-        <div class="template-item">
-            <span fxLayoutAlign="start center" class="school-title">
-                <mat-card-title>
-                    {{submission.title}}
-                    <span class="total-submission">
-                        {{submission.totalSubmission}} total submission
-                    </span>
-                </mat-card-title>               
-            </span>
-            <span fxFlex></span>
-            <span fxLayoutAlign="end center">
-                <button mat-icon-button>
-                    <mat-icon>remove_red_eye</mat-icon>
-                </button>
-            </span>
+<div class="full-height">
+    <div fxLayout="column" fxLayoutAlign="space-around stretch">
+        <div *ngFor="let submission of submissionList">
+            <mat-divider></mat-divider>
+            <div class="template-item">
+                <span fxLayoutAlign="start center" class="school-title">
+                    <mat-card-title>
+                        {{submission.title}}
+                        <span class="total-submission">
+                            {{submission.totalSubmission}} total submission
+                        </span>
+                    </mat-card-title>
+                </span>
+                <span fxFlex></span>
+                <span fxLayoutAlign="end center">
+                    <button mat-icon-button>
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </button>
+                </span>
+            </div>
         </div>
+        <mat-divider></mat-divider>
     </div>
-    <mat-divider></mat-divider>
+    <br />
 </div>
-<br/>
