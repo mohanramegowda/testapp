@@ -54,10 +54,10 @@
                 <mat-step *ngFor="let section of sections; let i = index">
                     <ng-template matStepLabel>{{section.title}}</ng-template>
                     <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
-                        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" fxLayoutAlign="start center">
+                        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
                         <ng-container *ngIf="section.fields">
-                            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center"
-                                *ngFor="let field of section.fields">
+                            <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
+                                fxLayoutAlign="center center" *ngFor="let field of section.fields">
                                 <mat-form-field appearance="fill">
                                     <mat-label>{{field.label}}</mat-label>
                                     <input matInput [placeholder]="field.name" required>
