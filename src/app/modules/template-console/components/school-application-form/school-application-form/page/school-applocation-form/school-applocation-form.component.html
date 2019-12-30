@@ -53,7 +53,7 @@
             <mat-horizontal-stepper #previewStepper>
                 <mat-step *ngFor="let section of sections; let i = index">
                     <ng-template matStepLabel>{{section.title}}</ng-template>
-                    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
+                    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0
                         fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
                         <ng-container *ngIf="section.fields">
                             <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
