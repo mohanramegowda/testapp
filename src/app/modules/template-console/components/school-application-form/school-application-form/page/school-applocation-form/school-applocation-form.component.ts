@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddFieldDialogComponent } from '@shared/components/add-field-dialog/add-field-dialog.component';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-school-applocation-form',
@@ -11,6 +12,7 @@ export class SchoolApplocationFormComponent implements OnInit {
 
   //fields = [];
   sections: Array<any> = [];
+  form: FormGroup;
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
