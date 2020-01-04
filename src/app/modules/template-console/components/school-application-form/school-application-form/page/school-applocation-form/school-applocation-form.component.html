@@ -46,13 +46,14 @@
     <mat-horizontal-stepper #previewStepper fxShow="true" fxHide.lt-md="true">
         <mat-step *ngFor="let section of sections; let i = index">
             <ng-template matStepLabel>{{section.title}}</ng-template>
-            <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0 fxLayoutGap.xs="15px"
+            <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutGap.xs="15px"
                 fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
                 <ng-container *ngIf="section.fields">
                     <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
                         fxLayoutAlign="center center" *ngFor="let field of section.fields">
                         <mat-form-field appearance="fill">
                             <mat-label>{{field.label}}</mat-label>
+                            <!--This is the placeholder for the dynamic form-->
                             <input matInput [placeholder]="field.name" required>
                             <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
                                     Please enter field name
@@ -79,6 +80,7 @@
                         fxLayoutAlign="center center" *ngFor="let field of section.fields">
                         <mat-form-field appearance="fill">
                             <mat-label>{{field.label}}</mat-label>
+                            <!-- todo This is the placeholder for the dynamic form-->
                             <input matInput [placeholder]="field.name" required>
                             <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
                                         Please enter field name

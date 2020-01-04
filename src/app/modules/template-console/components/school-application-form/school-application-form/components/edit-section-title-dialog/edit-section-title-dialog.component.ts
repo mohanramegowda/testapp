@@ -28,8 +28,8 @@ export class EditSectionTitleDialogComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.data) {
-      this.form.setValue(this.data);
+    if (this.data && this.form) {
+      this.form.controls['title'].setValue(this.data.title);
       this.cdr.detectChanges();
     }
   }

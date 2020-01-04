@@ -20,7 +20,9 @@ export class SchoolApplocationFormComponent implements OnInit {
   }
 
   onEditSectionTitle(section) {
-    const dialogRef = this.dialog.open(EditSectionTitleDialogComponent);
+    const dialogRef = this.dialog.open(EditSectionTitleDialogComponent, {
+      data: section
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -36,10 +38,12 @@ export class SchoolApplocationFormComponent implements OnInit {
   }
 
   OnAddNewSection() {
-    this.sections.push({
-      title: 'test',
+    const section = {
+      title: '',
       fields: []
-    });
+    };
+    this.sections.push(section);
+    this.onEditSectionTitle(section);    
   }
 
 
