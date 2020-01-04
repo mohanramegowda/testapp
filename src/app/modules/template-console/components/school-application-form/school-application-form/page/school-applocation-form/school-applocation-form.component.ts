@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddFieldDialogComponent } from '@shared/components/add-field-dialog/add-field-dialog.component';
 import { FormGroup } from '@angular/forms';
+import { EditSectionTitleDialogComponent } from '../../components/edit-section-title-dialog/edit-section-title-dialog.component';
 
 @Component({
   selector: 'app-school-applocation-form',
@@ -16,6 +17,22 @@ export class SchoolApplocationFormComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  onEditSectionTitle(section) {
+    const dialogRef = this.dialog.open(EditSectionTitleDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        section.title = result.title;
+      }
+    });
+  }
+
+  onDeleteSection(section) {
+    if (section) {
+      this.sections.splice(this.sections.indexOf(section), 1);
+    }
   }
 
   OnAddNewSection() {

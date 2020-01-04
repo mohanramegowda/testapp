@@ -1,112 +1,116 @@
 <!--Vertical steppers are used for responsiveness. Any changes done in the steppers of horizontal stepper
      should be moved to vertical stepper as well the content of vertical stepper is exact copy of the 
      horizontal stepper-->
+
+<ng-template #editFormFieldsStepContent>
+    <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
+        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" *ngFor="let section of sections">
+        <div fxFlex="93%" fxFlex.xs="96%" fxFlex.sm="96%" fxLayoutAlign="center center">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title fxLayoutAlign="start center">
+                        <mat-card-title>{{section.title}}</mat-card-title>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <button mat-icon-button matTooltip="Edit" (click)="onEditSectionTitle(section)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Delete" (click)="onDeleteSection(section)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-field-configuration-engine [fields]="section.fields" (emitter)="OnActions($event, section)">
+                </app-field-configuration-engine>
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+                    <button mat-stroked-button class="stroked-button" (click)="OnAddNewField(section)"
+                        fxLayoutAlign="center center">
+                        <mat-icon>add</mat-icon>
+                        Add Field
+                    </button>
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button mat-stroked-button class="stroked-button" (click)="OnAddNewSection()" fxLayoutAlign="center center">
+            <mat-icon>add</mat-icon>
+            Add New Section
+        </button>
+    </div>
+</ng-template>
+<ng-template #previewAndSubmitStepContent>
+    <!-- School Preview & submit content starts from here-->
+    <mat-horizontal-stepper #previewStepper fxShow="true" fxHide.lt-md="true">
+        <mat-step *ngFor="let section of sections; let i = index">
+            <ng-template matStepLabel>{{section.title}}</ng-template>
+            <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0 fxLayoutGap.xs="15px"
+                fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
+                <ng-container *ngIf="section.fields">
+                    <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
+                        fxLayoutAlign="center center" *ngFor="let field of section.fields">
+                        <mat-form-field appearance="fill">
+                            <mat-label>{{field.label}}</mat-label>
+                            <input matInput [placeholder]="field.name" required>
+                            <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
+                                    Please enter field name
+                                </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+
+            </div>
+            <div align="center" fxLayoutGap="10px">
+                <button mat-stroked-button matStepperPrevious *ngIf="i > 0">Back</button>
+                <button mat-stroked-button matStepperNext *ngIf="i < sections.length-1">Next</button>
+                <button mat-stroked-button matStepperNext *ngIf="i === sections.length-1">Submit</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    <mat-vertical-stepper #previewStepper fxShow="true" fxHide.gt-sm="true">
+        <mat-step *ngFor="let section of sections; let i = index">
+            <ng-template matStepLabel>{{section.title}}</ng-template>
+            <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0 fxLayoutGap.xs="15px"
+                fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
+                <ng-container *ngIf="section.fields">
+                    <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
+                        fxLayoutAlign="center center" *ngFor="let field of section.fields">
+                        <mat-form-field appearance="fill">
+                            <mat-label>{{field.label}}</mat-label>
+                            <input matInput [placeholder]="field.name" required>
+                            <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
+                                        Please enter field name
+                                    </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+
+            </div>
+            <div align="center" fxLayoutGap="10px">
+                <button mat-stroked-button matStepperPrevious *ngIf="i > 0">Back</button>
+                <button mat-stroked-button matStepperNext *ngIf="i < sections.length-1">Next</button>
+                <button mat-stroked-button matStepperNext *ngIf="i === sections.length-1">Submit</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+    <!-- School Preview & submit content ends here-->
+</ng-template>
 <div class="full-height">
 
     <mat-horizontal-stepper #stepper fxShow="true" fxHide.lt-md="true">
 
         <mat-step>
             <ng-template matStepLabel>Edit Form Fields and Sections</ng-template>
-            <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
-                fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" *ngFor="let section of sections">
-                <div fxFlex="93%" fxFlex.xs="96%" fxFlex.sm="96%" fxLayoutAlign="center center">
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title fxLayoutAlign="start center">
-                                <mat-card-title>{{section.title}}</mat-card-title>
-                            </mat-panel-title>
-                            <mat-panel-description>
-                                <button mat-icon-button matTooltip="Edit">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                                <button mat-icon-button matTooltip="Delete">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-
-                        <app-field-configuration-engine [fields]="section.fields"
-                            (emitter)="OnActions($event, section)">
-                        </app-field-configuration-engine>
-                        <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-                            <button mat-stroked-button class="stroked-button" (click)="OnAddNewField(section)"
-                                fxLayoutAlign="center center">
-                                <mat-icon>add</mat-icon>
-                                Add Field
-                            </button>
-                        </div>
-                    </mat-expansion-panel>
-                </div>
-            </div>
-
-            <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-                <button mat-stroked-button class="stroked-button" (click)="OnAddNewSection()"
-                    fxLayoutAlign="center center">
-                    <mat-icon>add</mat-icon>
-                    Add New Section
-                </button>
-            </div>
+            <ng-container *ngTemplateOutlet="editFormFieldsStepContent"></ng-container>
             <div align="right">
                 <button mat-stroked-button class="stroked-button" matStepperNext>Next</button>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Preview & Submit</ng-template>
-
-            <!-- School Preview & submit content starts from here-->
-            <mat-horizontal-stepper #previewStepper fxShow="true" fxHide.lt-md="true">
-                <mat-step *ngFor="let section of sections; let i = index">
-                    <ng-template matStepLabel>{{section.title}}</ng-template>
-                    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0
-                        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
-                        <ng-container *ngIf="section.fields">
-                            <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
-                                fxLayoutAlign="center center" *ngFor="let field of section.fields">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>{{field.label}}</mat-label>
-                                    <input matInput [placeholder]="field.name" required>
-                                    <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
-                                                Please enter field name
-                                            </mat-error> -->
-                                </mat-form-field>
-                            </div>
-                        </ng-container>
-
-                    </div>
-                    <div align="center" fxLayoutGap="10px">
-                        <button mat-stroked-button matStepperPrevious *ngIf="i > 0">Back</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i < sections.length-1">Next</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i === sections.length-1">Submit</button>
-                    </div>
-                </mat-step>
-            </mat-horizontal-stepper>
-            <mat-vertical-stepper #previewStepper fxShow="true" fxHide.gt-sm="true">
-                <mat-step *ngFor="let section of sections; let i = index">
-                    <ng-template matStepLabel>{{section.title}}</ng-template>
-                    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0
-                        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
-                        <ng-container *ngIf="section.fields">
-                            <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
-                                fxLayoutAlign="center center" *ngFor="let field of section.fields">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>{{field.label}}</mat-label>
-                                    <input matInput [placeholder]="field.name" required>
-                                    <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
-                                                    Please enter field name
-                                                </mat-error> -->
-                                </mat-form-field>
-                            </div>
-                        </ng-container>
-
-                    </div>
-                    <div align="center" fxLayoutGap="10px">
-                        <button mat-stroked-button matStepperPrevious *ngIf="i > 0">Back</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i < sections.length-1">Next</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i === sections.length-1">Submit</button>
-                    </div>
-                </mat-step>
-            </mat-vertical-stepper>
-            <!-- School Preview & submit content ends here-->
+            <ng-container *ngTemplateOutlet="previewAndSubmitStepContent"></ng-container>
             <div align="right" fxLayoutGap="10px">
                 <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
                 <button mat-stroked-button class="stroked-button" matStepperNext>Submit</button>
@@ -118,112 +122,19 @@
     <mat-vertical-stepper #stepper fxShow="true" fxHide.gt-sm="true">
         <mat-step>
             <ng-template matStepLabel>Edit Form Fields and Sections</ng-template>
-            <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
-                fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" *ngFor="let section of sections">
-                <div fxFlex="93%" fxFlex.xs="96%" fxFlex.sm="96%" fxLayoutAlign="center center">
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title fxLayoutAlign="start center">
-                                <mat-card-title>{{section.title}}</mat-card-title>
-                            </mat-panel-title>
-                            <mat-panel-description>
-                                <button mat-icon-button matTooltip="Edit">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                                <button mat-icon-button matTooltip="Delete">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-
-                        <app-field-configuration-engine [fields]="section.fields"
-                            (emitter)="OnActions($event, section)">
-                        </app-field-configuration-engine>
-                        <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-                            <button mat-stroked-button class="stroked-button" (click)="OnAddNewField(section)"
-                                fxLayoutAlign="center center">
-                                <mat-icon>add</mat-icon>
-                                Add Field
-                            </button>
-                        </div>
-                    </mat-expansion-panel>
-                </div>
-            </div>
-
-            <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-                <button mat-stroked-button class="stroked-button" (click)="OnAddNewSection()"
-                    fxLayoutAlign="center center">
-                    <mat-icon>add</mat-icon>
-                    Add New Section
-                </button>
-            </div>
+            <ng-container *ngTemplateOutlet="editFormFieldsStepContent"></ng-container>
             <div align="right">
                 <button mat-stroked-button class="stroked-button" matStepperNext>Next</button>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Preview & Submit</ng-template>
-
-            <!-- School Preview & submit content starts from here-->
-            <mat-horizontal-stepper #previewStepper fxShow="true" fxHide.lt-md="true">
-                <mat-step *ngFor="let section of sections; let i = index">
-                    <ng-template matStepLabel>{{section.title}}</ng-template>
-                    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0
-                        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
-                        <ng-container *ngIf="section.fields">
-                            <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
-                                fxLayoutAlign="center center" *ngFor="let field of section.fields">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>{{field.label}}</mat-label>
-                                    <input matInput [placeholder]="field.name" required>
-                                    <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
-                                                    Please enter field name
-                                                </mat-error> -->
-                                </mat-form-field>
-                            </div>
-                        </ng-container>
-
-                    </div>
-                    <div align="center" fxLayoutGap="10px">
-                        <button mat-stroked-button matStepperPrevious *ngIf="i > 0">Back</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i < sections.length-1">Next</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i === sections.length-1">Submit</button>
-                    </div>
-                </mat-step>
-            </mat-horizontal-stepper>
-            <mat-vertical-stepper #previewStepper fxShow="true" fxHide.gt-sm="true">
-                <mat-step *ngFor="let section of sections; let i = index">
-                    <ng-template matStepLabel>{{section.title}}</ng-template>
-                    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap=0
-                        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
-                        <ng-container *ngIf="section.fields">
-                            <div class="example-container" fxFlex="48%" fxFlex.sm="98%" fxFlex.xs="98%"
-                                fxLayoutAlign="center center" *ngFor="let field of section.fields">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>{{field.label}}</mat-label>
-                                    <input matInput [placeholder]="field.name" required>
-                                    <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
-                                                        Please enter field name
-                                                    </mat-error> -->
-                                </mat-form-field>
-                            </div>
-                        </ng-container>
-
-                    </div>
-                    <div align="center" fxLayoutGap="10px">
-                        <button mat-stroked-button matStepperPrevious *ngIf="i > 0">Back</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i < sections.length-1">Next</button>
-                        <button mat-stroked-button matStepperNext *ngIf="i === sections.length-1">Submit</button>
-                    </div>
-                </mat-step>
-            </mat-vertical-stepper>
-            <!-- School Preview & submit content ends here-->
+            <ng-container *ngTemplateOutlet="previewAndSubmitStepContent"></ng-container>
             <div align="right" fxLayoutGap="10px">
                 <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
                 <button mat-stroked-button class="stroked-button" matStepperNext>Submit</button>
             </div>
         </mat-step>
-
     </mat-vertical-stepper>
 
 

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Enter Section Title</h1>
+<form [formGroup]="form">
+    <div mat-dialog-content>
+        <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
+            fxLayoutAlign="center">
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Section Title</mat-label>
+                    <input matInput placeholder="Section Title" formControlName="title" required>
+                    <mat-error *ngIf="form.controls['title'].errors?.required">
+                        Please enter Section Title
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div mat-dialog-actions fxLayoutAlign="end">
+    <button mat-button (click)="onNoClick()">Close</button>
+    <button mat-button [mat-dialog-close]="form.getRawValue()" [disabled]="form.invalid">
+        Ok
+    </button>
+</div>
