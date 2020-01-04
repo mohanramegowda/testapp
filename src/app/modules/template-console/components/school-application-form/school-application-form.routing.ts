@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SchoolApplocationFormComponent } from './page/school-applocation-form/school-applocation-form.component';
+import { SchoolApplocationFormComponent } from './page/school-applocation-form.component';
 
 
 

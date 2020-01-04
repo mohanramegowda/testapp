@@ -1,0 +1,111 @@
+<ng-template #feeOrFreeStep>
+    <div fxLayoutAlign="center center" fxLayout="row wrap">
+        <div class="describer-content" fxFlex.sm="95%" fxFlex.xs="95%">
+            Payment processing will be handled by our portal for which the service charges are applicable.
+            Do you want to collect application fee from your applicants? If yes service
+            charges are applicable for handling the payment processing by our portal.
+        </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button mat-stroked-button class="stroked-button" (click)="onFeeYes()">
+            Yes
+        </button>
+        <button mat-stroked-button class="stroked-button" (click)="onFeeNo()">
+            No
+        </button>
+    </div>
+</ng-template>
+<ng-template #feeCalculation>
+    <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutGap.xs="15px"
+        fxLayoutGap.sm="15px" fxLayoutAlign="stretch stretch">
+        <div class="example-container" fxFlex="28%" fxFlex.sm="98%" fxFlex.xs="98%" fxLayoutAlign="center center">
+            <mat-label>Rs.</mat-label>
+            <mat-form-field appearance="fill">
+                <mat-label>Application Fee</mat-label>
+                <!-- todo This is the placeholder for the dynamic form-->
+                <input matInput placeholder="Application Fee" required>
+                <!-- <mat-error *ngIf="form.controls['name'].errors?.required">
+                    Please enter field name
+                </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="example-container" fxFlex="2%" fxFlex.sm="98%" fxFlex.xs="98%" fxLayoutAlign="center center">
+            <mat-label>+</mat-label>
+        </div>
+        <div class="example-container" fxFlex="2%" fxFlex.sm="98%" fxFlex.xs="98%" fxLayoutAlign="center center">
+            <mat-label>Rs. 100</mat-label>
+        </div>
+        <div class="example-container" fxFlex="2%" fxFlex.sm="98%" fxFlex.xs="98%" fxLayoutAlign="center center">
+            <mat-label>=</mat-label>
+        </div>
+        <div class="example-container" fxFlex="28%" fxFlex.sm="98%" fxFlex.xs="98%" fxLayoutAlign="center center">
+            <mat-label>Total</mat-label>
+        </div>
+        <div class="example-container" fxFlex="28%" fxFlex.sm="98%" fxFlex.xs="98%" fxLayoutAlign="center center">
+            <mat-label>(Recommended Application fee Rs. 500 to Rs. 600)</mat-label>
+        </div>
+    </div>
+    <div class="describer-content" fxFlex.sm="95%" fxFlex.xs="95%">
+        It is important that you set the price of your Application Fee which will include our
+        service fee and your fee towards the application.<br />
+        The recommended Application fee is just a guide to help you decide. All Application
+        Fee Decisions are yours and yours only.
+    </div>
+</ng-template>
+<ng-template #bankDetails>
+
+</ng-template>
+
+<div class="full-height">
+    <mat-horizontal-stepper #stepper fxShow="true" fxHide.lt-md="true">
+        <mat-step>
+            <ng-template matStepLabel>Collect Application Fee</ng-template>
+            <ng-container *ngTemplateOutlet="feeOrFreeStep"></ng-container>
+            <div align="right">
+                <button mat-stroked-button class="stroked-button" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Fee Calculation</ng-template>
+            <ng-container *ngTemplateOutlet="feeCalculation"></ng-container>
+            <div align="right" fxLayoutGap="10px">
+                <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
+                <button mat-stroked-button class="stroked-button" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Bank Details</ng-template>
+            <ng-container *ngTemplateOutlet="bankDetails"></ng-container>
+            <div align="right" fxLayoutGap="10px">
+                <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
+                <button mat-stroked-button class="stroked-button" matStepperNext>Submit</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    <mat-vertical-stepper #previewStepper fxShow="true" fxHide.gt-sm="true">
+        <mat-step>
+            <ng-template matStepLabel>Collect Application Fee</ng-template>
+            <ng-container *ngTemplateOutlet="feeOrFreeStep"></ng-container>
+            <div align="right">
+                <button mat-stroked-button class="stroked-button" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Fee Calculation</ng-template>
+            <ng-container *ngTemplateOutlet="feeCalculation"></ng-container>
+            <div align="right" fxLayoutGap="10px">
+                <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
+                <button mat-stroked-button class="stroked-button" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Bank Details</ng-template>
+            <ng-container *ngTemplateOutlet="bankDetails"></ng-container>
+            <div align="right" fxLayoutGap="10px">
+                <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
+                <button mat-stroked-button class="stroked-button" matStepperNext>Submit</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+
+</div>

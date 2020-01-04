@@ -4,8 +4,6 @@ import { SharedModule } from '@shared/shared.module';
 import { TemplateConsoleRoutingModule } from './template-console.routing';
 
 
-
-
 @NgModule({
   declarations: [TemplateConsoleComponent],
   imports: [

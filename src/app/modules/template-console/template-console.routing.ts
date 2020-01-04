@@ -22,8 +22,14 @@ export const routes: Routes = [
             {
                 path: 'school-application-form',
                 loadChildren: () =>
-                    import('@modules/template-console/components/school-application-form/school-application-form/school-application-form.module')
+                    import('@modules/template-console/components/school-application-form/school-application-form.module')
                         .then(m => m.SchoolApplicationFormModule)
+            },
+            {
+                path: 'application-fee',
+                loadChildren: () =>
+                    import('@modules/template-console/components/application-fee/application-fee.module')
+                        .then(m => m.ApplicationFeeModule)
             }
         ]
     }
