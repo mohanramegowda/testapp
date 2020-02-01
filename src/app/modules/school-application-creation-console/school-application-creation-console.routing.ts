@@ -24,6 +24,12 @@ export const routes: Routes = [
           import('@modules/my-templates/my-templates.module').then(m => m.MyTemplatesModule)
       },
       {
+        path: 'add-new-template',
+        loadChildren: () =>
+          import('@modules/my-templates/page/add-new-template/add-new-template.module')
+          .then(m => m.AddNewTemplateModule)
+      },
+      {
         path: 'submissions',
         loadChildren: () =>
           import('@modules/submissions/submissions.module').then(m => m.SubmissionsModule)

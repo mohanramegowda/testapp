@@ -27,6 +27,6 @@ export class MyTemplatesComponent implements OnInit {
   }
 
   OnCreateNewTemplate() {
-    this.router.navigate(['creation-console/template-console']);
+    this.router.navigate(['creation-console/add-new-template']);
   }
 }
