@@ -27,6 +27,7 @@ export class SchoolApplocationFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         section.title = result.title;
+        this.sections.push(section);
       }
     });
   }
@@ -42,7 +43,7 @@ export class SchoolApplocationFormComponent implements OnInit {
       title: '',
       fields: []
     };
-    this.sections.push(section);
+    
     this.onEditSectionTitle(section);    
   }
 

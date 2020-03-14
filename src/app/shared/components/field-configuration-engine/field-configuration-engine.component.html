@@ -1,25 +1,25 @@
 <mat-card class="card-margin" *ngFor="let field of fields">
-    <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
-        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px">
-        <div fxFlex="23%" fxLayoutAlign="center center">
+    <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.lg="2px"
+        fxLayoutGap.sm="0px">
+        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
             <span>Field name: </span>
             <span><strong>{{field.label}}</strong></span>
         </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="23%" fxLayoutAlign="center center">
+        
+        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
             <span>Field Type: </span>
             <span><strong>{{field.type}}</strong></span>
         </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="23%" fxLayoutAlign="center center">
+        
+        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
             <span>Default Value: </span>
             <span>
                 <strong *ngIf="field.defaultValue">{{field.defaultValue}}</strong>
                 <strong *ngIf="!field.defaultValue">--blank--</strong>
             </span>
         </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="23%" fxLayoutAlign="center center">
+        
+        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
             <span>Validations: </span>
             <span>
                 <strong *ngIf="field.validation">
@@ -29,8 +29,8 @@
                 </strong>
             </span>
         </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div fxFlex="8%" fxLayoutAlign="center center">
+        
+        <div fxFlex="8%" fxLayoutAlign="center center" class="cell">
             <button mat-icon-button matTooltip="Edit" (click)="onActionsClick('Edit', field)">
                 <mat-icon>edit</mat-icon>
             </button>
