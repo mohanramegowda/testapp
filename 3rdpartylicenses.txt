@@ -114,6 +114,10 @@ THE SOFTWARE.
 
 @angular/material/card
 
+@angular/material/checkbox
+
+@angular/material/chips
+
 @angular/material/core
 
 @angular/material/datepicker
@@ -121,8 +125,6 @@ THE SOFTWARE.
 @angular/material/dialog
 
 @angular/material/divider
-
-@angular/material/expansion
 
 @angular/material/form-field
 
@@ -145,6 +147,8 @@ THE SOFTWARE.
 @angular/material/toolbar
 
 @angular/material/tooltip
+
+@angular/material/tree
 
 @angular/platform-browser
 MIT
