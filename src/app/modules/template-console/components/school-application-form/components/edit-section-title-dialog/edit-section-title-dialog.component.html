@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Enter Section Title</h1>
+<h1 mat-dialog-title>Enter Product Category Details</h1>
 <form [formGroup]="form">
     <div mat-dialog-content>
         <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
@@ -10,6 +10,50 @@
                     <mat-error *ngIf="form.controls['title'].errors?.required">
                         Please enter Section Title
                     </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Status</mat-label>
+                    <!-- <input matInput placeholder="Field Type"> -->
+                    <mat-select formControlName="status" required>
+                        <mat-option>--</mat-option>
+                        <mat-option value="Textbox">Active</mat-option>
+                        <mat-option value="Password">Inactive</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls['status'].errors?.required">
+                        Please choose this product category status
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+                <div class="mat-form-field-wrapper file-input-container">
+                    <mat-label>Upload an Image</mat-label>
+                    <input id="singleFile" type="file" />
+                </div>
+            </div>
+            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Description" formControlName="description" required>
+                    <mat-error *ngIf="form.controls['description'].errors?.required">
+                        Please enter Description
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+                <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Keywords</mat-label>
+                    <mat-chip-list #chipList aria-label="Fruit selection" formControlName="keywords">
+                        <mat-chip *ngFor="let fruit of keywords.value" [selectable]="selectable" [removable]="removable"
+                            (removed)="remove(fruit)">
+                            {{fruit}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Keywords" [matChipInputFor]="chipList" 
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
                 </mat-form-field>
             </div>
         </div>

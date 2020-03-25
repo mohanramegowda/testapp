@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="filter-row mat-elevation-z1"
+fxLayoutGap="15px" >
+    <button mat-raised-button (click)="changeViewType('sort')">
+        <mat-icon>sort</mat-icon>
+        Sort
+    </button>
+    
+    <div fxLayout.xs="column" fxLayoutGap="15px">
+        <button mat-raised-button (click)="changeViewType('filter')">
+            <mat-icon>filter_list</mat-icon>
+            Filter
+        </button>
+        <button mat-raised-button (click)="changeViewType('addNewItem')">
+            <mat-icon>add_circle_outline</mat-icon>
+            Add New Category
+        </button>
+    </div>
+</div>

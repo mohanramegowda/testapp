@@ -4,6 +4,7 @@ import { SharedModule } from '@shared/shared.module';
 import { SchoolApplicationFormRoutingModule } from './school-application-form.routing';
 import {MatStepperModule} from '@angular/material/stepper';
 import { EditSectionTitleDialogComponent } from './components/edit-section-title-dialog/edit-section-title-dialog.component';
+import { MatTreeModule } from '@angular/material';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { EditSectionTitleDialogComponent } from './components/edit-section-title
   imports: [
     SharedModule,
     SchoolApplicationFormRoutingModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTreeModule
   ],
   entryComponents: [EditSectionTitleDialogComponent]
 })

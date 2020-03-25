@@ -3,36 +3,51 @@
      horizontal stepper-->
 
 <ng-template #editFormFieldsStepContent>
-    <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px"
-        fxLayoutGap.xs="15px" fxLayoutGap.sm="15px" *ngFor="let section of sections">
-        <div fxFlex="93%" fxFlex.xs="96%" fxFlex.sm="96%" fxLayoutAlign="center center">
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title fxLayoutAlign="start center">
-                        <mat-card-title>{{section.title}}</mat-card-title>
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        <button mat-icon-button matTooltip="Edit" (click)="onEditSectionTitle(section)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button matTooltip="Delete" (click)="onDeleteSection(section)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
+    <items-toolbar [dataSource]="dataSource" (change)="changeViewType($event)"></items-toolbar>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+            <button mat-icon-button disabled></button>
+            <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
+                (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+            <button mat-icon-button (click)="addNewItem(node)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="addNewItem(node)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-tree-node>
 
-                <app-field-configuration-engine [fields]="section.fields" (emitter)="OnActions($event, section)">
-                </app-field-configuration-engine>
-                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-                    <button mat-stroked-button class="stroked-button" (click)="OnAddNewField(section)"
-                        fxLayoutAlign="center center">
-                        <mat-icon>add</mat-icon>
-                        Add Field
-                    </button>
-                </div>
-            </mat-expansion-panel>
-        </div>
-    </div>
+        <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+            <button mat-icon-button disabled></button>
+            <mat-form-field appearance="fill">
+                <mat-label>New item...</mat-label>
+                <input matInput #itemValue placeholder="Ex. Lettuce">
+            </mat-form-field>
+            <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
+        </mat-tree-node>
+
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+                <mat-icon class="mat-icon-rtl-mirror">
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+            </button>
+            <mat-checkbox [checked]="descendantsAllSelected(node)" [indeterminate]="descendantsPartiallySelected(node)"
+                (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+            <button mat-icon-button (click)="addNewItem(node)">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button (click)="addNewItem(node)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="addNewItem(node)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button (click)="addNewItem(node)">
+                <mat-icon>filter_list</mat-icon>
+            </button>
+        </mat-tree-node>
+    </mat-tree>
 
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
         <button mat-stroked-button class="stroked-button" (click)="OnAddNewSection()" fxLayoutAlign="center center">

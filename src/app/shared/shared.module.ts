@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FieldConfigurationEngineComponent } from './components/field-configuration-engine/field-configuration-engine.component';
 import { MainCarouselComponent } from './components/main-carousel/main-carousel.component';
 import { AddFieldDialogComponent } from './components/add-field-dialog/add-field-dialog.component';
+import { ItemsToolbarComponent } from './components/items-toolbar/items-toolbar.component';
 
 @NgModule({
   declarations: [MainSidebarComponent, FieldConfigurationEngineComponent,
@@ -25,7 +26,8 @@ import { AddFieldDialogComponent } from './components/add-field-dialog/add-field
     SubmissionItemComponent, HeaderComponent, AuthenticationPipePipe,
     DeleteThisDirectiveDirective,
     MainCarouselComponent,
-    AddFieldDialogComponent],
+    AddFieldDialogComponent,
+    ItemsToolbarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -48,10 +50,12 @@ import { AddFieldDialogComponent } from './components/add-field-dialog/add-field
     TemplateListComponent,
     SubmissionListComponent,
     FieldConfigurationEngineComponent,
-    AddFieldDialogComponent
+    AddFieldDialogComponent,
+    ItemsToolbarComponent
   ],
   entryComponents: [
-    AddFieldDialogComponent
+    AddFieldDialogComponent,
+    ItemsToolbarComponent
   ]
 })
 export class SharedModule { }
