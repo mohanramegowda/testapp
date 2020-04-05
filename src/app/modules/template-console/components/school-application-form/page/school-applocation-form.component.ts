@@ -8,27 +8,19 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { TreeItemNode } from '@app/models/tree-item-node';
 import { TreeItemFlatNode } from '@app/models/tree-item-flat-node';
+import {
+  map,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap
+} from "rxjs/operators";
+import { Observable } from 'rxjs/internal/Observable';
 
 /**
  * The Json object for to-do list data.
  */
-const TREE_DATA = {
-  Groceries: {
-    'Almond Meal flour': null,
-    'Organic eggs': null,
-    'Protein Powder': null,
-    Fruits: {
-      Apple: null,
-      Berries: ['Blueberry', 'Raspberry'],
-      Orange: null
-    }
-  },
-  Reminders: [
-    'Cook dinner',
-    'Read the Material Design spec',
-    'Upgrade Application to Angular'
-  ]
-};
+const TREE_DATA = {};
 
 /**
  * Checklist database, it can build a tree structured Json object.
@@ -62,13 +54,13 @@ export class ChecklistDatabase {
     return Object.keys(obj).reduce<TreeItemNode[]>((accumulator, key) => {
       const value = obj[key];
       const node = new TreeItemNode();
-      node.item = key;
+      node.name = key;
 
       if (value != null) {
         if (typeof value === 'object') {
           node.children = this.buildFileTree(value, level + 1);
         } else {
-          node.item = value;
+          node.name = value;
         }
       }
 
@@ -79,7 +71,7 @@ export class ChecklistDatabase {
   /** Add an item to to-do list */
   insertItem(parent: TreeItemNode, name: string) {
     if (parent.children) {
-      parent.children.push({ item: name } as TreeItemNode);
+      parent.children.push({ name: name } as TreeItemNode);
       this.dataChange.next(this.data);
     }
   }
@@ -91,8 +83,25 @@ export class ChecklistDatabase {
     }
   }
 
+  insertChildItem(parent: TreeItemNode, child: TreeItemNode) {
+    if (parent.children) {
+      parent.children.push(child);
+      this.dataChange.next(this.data);
+    }
+  }
+
   updateItem(node: TreeItemNode, name: string) {
-    node.item = name;
+    node.name = name;
+    this.dataChange.next(this.data);
+  }
+
+  updateNode(node: TreeItemNode, newNode: TreeItemNode) {
+    Object.assign(node, newNode);
+    this.dataChange.next(this.data);
+  }
+
+  updateItemByFlatNode(node: TreeItemFlatNode, name: string) {
+    node.name = name;
     this.dataChange.next(this.data);
   }
 }
@@ -129,7 +138,7 @@ export class SchoolApplocationFormComponent implements OnInit {
   /** The selection for checklist */
   checklistSelection = new SelectionModel<TreeItemFlatNode>(true /* multiple */);
 
-  filterNode: TreeItemFlatNode;
+  filterNode: TreeItemNode;
 
   constructor(private _database: ChecklistDatabase, public dialog: MatDialog) {
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel,
@@ -150,17 +159,18 @@ export class SchoolApplocationFormComponent implements OnInit {
 
   hasChild = (_: number, _nodeData: TreeItemFlatNode) => _nodeData.expandable;
 
-  hasNoContent = (_: number, _nodeData: TreeItemFlatNode) => _nodeData.item === '';
+  hasNoContent = (_: number, _nodeData: TreeItemFlatNode) => _nodeData.name === '';
 
   /**
    * Transformer to convert nested node to flat node. Record the nodes in maps for later use.
    */
   transformer = (node: TreeItemNode, level: number) => {
     const existingNode = this.nestedNodeMap.get(node);
-    const flatNode = existingNode && existingNode.item === node.item
+    const flatNode = existingNode && existingNode.name === node.name
       ? existingNode
       : new TreeItemFlatNode();
-    flatNode.item = node.item;
+    // flatNode.name = node.name;
+    Object.assign(flatNode, node);
     flatNode.level = level;
     flatNode.expandable = !!node.children;
     this.flatNodeMap.set(flatNode, node);
@@ -185,7 +195,7 @@ export class SchoolApplocationFormComponent implements OnInit {
   }
 
   /** Toggle the to-do item selection. Select/deselect all the descendants node */
-  todoItemSelectionToggle(node: TreeItemFlatNode): void {
+  treeItemSelectionToggle(node: TreeItemFlatNode): void {
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
     this.checklistSelection.isSelected(node)
@@ -200,7 +210,7 @@ export class SchoolApplocationFormComponent implements OnInit {
   }
 
   /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
-  todoLeafItemSelectionToggle(node: TreeItemFlatNode): void {
+  treeLeafItemSelectionToggle(node: TreeItemFlatNode): void {
     this.checklistSelection.toggle(node);
     this.checkAllParentsSelection(node);
   }
@@ -251,15 +261,40 @@ export class SchoolApplocationFormComponent implements OnInit {
   /** Select the category so we can insert the new item. */
   addNewItem(node: TreeItemFlatNode) {
     const parentNode = this.flatNodeMap.get(node);
-    this._database.insertItem(parentNode!, '');
+    this.AddNewChildCategory(parentNode);
+    //this._database.insertItem(parentNode!, '');
     this.treeControl.expand(node);
   }
 
   addNewRootItem(node: TreeItemNode) {
-    node.children = [];
-    this._database.data.push(node);
-    this._database.dataChange.next(this._database.data);
-    //this.treeControl.expand(node);
+    if (node) {
+      node.children = node.categoryType === 'noChildren' ? node.children : [];
+      this._database.data.push(node);
+      this._database.dataChange.next(this._database.data);
+    }
+  }
+
+  RemoveRootItem(node: TreeItemFlatNode) {
+    if (node) {
+      const nestedNode = this.flatNodeMap.get(node);
+      const index = this._database.data.indexOf(nestedNode);
+      this._database.data.splice(index, 1);
+      this._database.dataChange.next(this._database.data);
+    }
+  }
+
+  RemoveChildItem(node: TreeItemFlatNode) {
+    const parentNode = this.getParentNode(node);
+    if(parentNode) {
+      const nestedNode = this.flatNodeMap.get(parentNode);
+      const nodeToDelete = this.flatNodeMap.get(node);
+      const index = nestedNode.children ? nestedNode.children.indexOf(nodeToDelete) : -1;
+      nestedNode.children.splice(index, 1);
+      this._database.dataChange.next(this._database.data);
+    }
+    else {
+      this.RemoveRootItem(node);
+    }
   }
 
   /** Save the node to database */
@@ -272,48 +307,115 @@ export class SchoolApplocationFormComponent implements OnInit {
     console.log(event);
     switch (event) {
       case 'filter':
-        this.showFilters();
+        this.ShowRootsFilter();
         break;
       case 'addNewItem':
-        this.ShowAddCategoryDialog();
+        this.AddNewRootCategory();
         break;
       case 'sort':
         break;
     }
   }
 
-  showFilters() {
-    this.showDialog({});
+  // All actions logic below
+  AddNewRootCategory() {
+    const node = new TreeItemNode();
+    node.isFilter = false;
+    node.dialogTitle = 'Enter Product Category Details'
+    const dialogRef = this.showDialog(node);
+
+    dialogRef.subscribe(result => {
+      this.addNewRootItem(result);
+    });
   }
 
-  ShowAddCategoryDialog() {
+  AddNewChildCategory(node?: TreeItemNode) {
+    if (!node)
+      node = new TreeItemNode();
+    node.isFilter = false;
+    node.isEdit = false;
+    node.dialogTitle = 'Enter Product Category Details'
+    const dialogRef = this.showDialog(node);
+
+    dialogRef.subscribe(result => {
+      if (result) {
+        result.children = result.categoryType === 'noChildren' ? result.children : [];
+        this._database.insertChildItem(node, result!);
+      }
+    });
+  }
+
+  ShowRootsFilter() {
     const node = new TreeItemNode();
+    node.isFilter = true;
+    node.dialogTitle = 'Filter';
+    const dialogRef = this.showDialog(node);
+
+    dialogRef.subscribe(result => {
+      if (result) {
+        // todo Write Filtering logic later
+        this.filterNode = result;
+      }
+    });
+  }
+
+  ShowChildFilter(node: TreeItemNode) {
+    node.isFilter = true;
+    node.dialogTitle = `Filter Child Nodes of ${node.name}`;
+    const dialogRef = this.showDialog(node);
+
+    dialogRef.subscribe(result => {
+      if (result) {
+        // todo Write child Filtering logic later
+        node.children = node.children.filter(ele => {
+          return ele.name.includes(result.name)
+            && ele.categoryType.includes(result.categoryType)
+            && ele.description.includes(result.description)
+            && ele.status.includes(result.status)
+        })
+        this.filterNode = result;
+      }
+    });
+  }
+
+  EditCategory(node?: TreeItemFlatNode) {
+    const nestedNode = this.flatNodeMap.get(node);
+    nestedNode.isEdit = true;
+    nestedNode.dialogTitle = 'Edit Product Category Details';
+    const dialogRef = this.showDialog(nestedNode);
+
+    dialogRef.subscribe(result => {
+      if (result) {
+        result.children = result.categoryType === 'noChildren' ? result.children : [];
+        this._database.updateNode(nestedNode!, result);
+      }
+    });
+  }
+
+  CategoryDetailsReadOnly(node?: TreeItemNode) {
+    node.isEdit = false;
+    node.isReadonly = true;
+    node.isFilter = false;
+    const dialogRef = this.showDialog(node);
+  }
+
+  private showDialog(node?: TreeItemNode): Observable<TreeItemNode> {
     const dialogRef = this.dialog.open(EditSectionTitleDialogComponent, {
       data: node
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        node.item = result.title;
-        this.addNewRootItem(node);
-      }
-    });
+    return dialogRef.afterClosed()
+      .pipe(
+        map(data => {
+          if (data)
+            return new TreeItemNode(
+              data.name,
+              data.status,
+              data.categoryType,
+              data.description,
+              data.keywords
+            );
+        }))
   }
-
-  showDialog(section) {
-    const dialogRef = this.dialog.open(EditSectionTitleDialogComponent, {
-      data: section
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        section.title = result.title;
-        this.filterNode = result;
-        // this.sections.push(section);
-      }
-    });
-  }
-
 
 
 }

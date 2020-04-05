@@ -1,6 +1,7 @@
+import { SectionDialogData } from "./section-dialog-data";
+
 /** Flat tree item node with expandable and level information */
-export class TreeItemFlatNode {
-    item: string;
+export class TreeItemFlatNode extends SectionDialogData {
     level: number;
     expandable: boolean;
   }

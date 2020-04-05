@@ -1,7 +1,8 @@
+import { SectionDialogData } from "./section-dialog-data";
+
 /**
  * Node for tree item
  */
-export class TreeItemNode {
+export class TreeItemNode extends SectionDialogData {
     children: TreeItemNode[];
-    item: string;
   }

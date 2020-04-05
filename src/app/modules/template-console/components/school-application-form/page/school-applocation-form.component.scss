@@ -10,3 +10,7 @@
 ::ng-deep .mat-tree-node {
     overflow-x: auto !important;
 }
+
+.mat-tree {
+    min-height: 50vh;
+}

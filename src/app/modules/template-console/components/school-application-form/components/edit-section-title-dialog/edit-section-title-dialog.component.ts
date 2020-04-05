@@ -1,11 +1,8 @@
 import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
-import {COMMA, ENTER, SPACE} from '@angular/cdk/keycodes';
-
-export interface SectionDialogData {
-  title: string
-}
+import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { SectionDialogData } from '@app/models/section-dialog-data';
 
 export interface Fruit {
   name: string;
@@ -27,18 +24,11 @@ export class EditSectionTitleDialogComponent implements OnInit {
   get keywords() {
     return this.form.get('keywords');
   }
-  
+
   constructor(public dialogRef: MatDialogRef<EditSectionTitleDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: SectionDialogData, private cdr: ChangeDetectorRef) {
     if (!this.form) {
-      this.form = new FormGroup(
-        {
-          title: new FormControl('', [Validators.required]),
-          status: new FormControl('', [Validators.required]),
-          description: new FormControl('', [Validators.required]),
-          keywords: new FormControl([], [Validators.required]),
-        }
-      )
+      this.buildForm();
     }
   }
 
@@ -46,8 +36,12 @@ export class EditSectionTitleDialogComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.data && this.form) {
-      this.form.controls['title'].setValue(this.data.title);
+    if (this.data && this.form && (this.data.isEdit || this.data.isReadonly)) {
+      this.form.controls['name'].setValue(this.data.name);
+      this.form.controls['status'].setValue(this.data.status);
+      this.form.controls['categoryType'].setValue(this.data.categoryType);
+      this.form.controls['description'].setValue(this.data.description);
+      this.form.controls['keywords'].setValue(this.data.keywords);
       this.cdr.detectChanges();
     }
   }
@@ -72,13 +66,30 @@ export class EditSectionTitleDialogComponent implements OnInit {
     }
   }
 
-  remove(fruit: Fruit): void {
-    const index = this.keywords.value.indexOf(fruit);
-
+  remove(index: number): void {
     if (index >= 0) {
-      this.keywords.value.splice(index, 1);
+      /* We can use the statement this.keywords.value.splice(index, 1); to remove the item, but it removes the item 
+      from the model this.data.keywords as well which leads to some bugs. */
+      this.keywords.setValue(this.keywords.value.slice(0, index)
+        .concat(this.keywords.value.slice(index + 1, this.keywords.value.length)));
       this.keywords.updateValueAndValidity();
     }
+  }
+
+  private buildForm() {
+    const validations: ValidatorFn[] = [];
+    if (!this.data.isFilter) {
+      validations.push(Validators.required);
+    }
+    this.form = new FormGroup(
+      {
+        name: new FormControl('', validations),
+        status: new FormControl('', validations),
+        categoryType: new FormControl('', validations),
+        description: new FormControl('', validations),
+        keywords: new FormControl([], validations),
+      }
+    )
   }
 
 }

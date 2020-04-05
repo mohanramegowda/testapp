@@ -1,41 +1,57 @@
-<h1 mat-dialog-title>Enter Product Category Details</h1>
+<h1 mat-dialog-title>{{data.dialogTitle}}</h1>
 <form [formGroup]="form">
     <div mat-dialog-content>
         <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
             fxLayoutAlign="center">
             <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
                 <mat-form-field appearance="fill">
-                    <mat-label>Section Title</mat-label>
-                    <input matInput placeholder="Section Title" formControlName="title" required>
-                    <mat-error *ngIf="form.controls['title'].errors?.required">
-                        Please enter Section Title
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Enter Product Category Name" formControlName="name"
+                        [required]="!data.isFilter" [readonly]="data.isReadonly">
+                    <mat-error *ngIf="form.controls['name'].errors?.required">
+                        Please enter Product Category Name
                     </mat-error>
                 </mat-form-field>
             </div>
             <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
                 <mat-form-field appearance="fill">
+                    <mat-label>Category Type</mat-label>
+                    <!-- <input matInput placeholder="Field Type"> -->
+                    <mat-select formControlName="categoryType" [required]="!data.isFilter" [disabled]="data.isReadonly">
+                        <mat-option>--</mat-option>
+                        <mat-option value="hasChildren">With Child Categories</mat-option>
+                        <mat-option value="noChildren">Without Child Categories</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls['categoryType'].errors?.required">
+                        Please choose the Category Type
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
                     <mat-label>Status</mat-label>
                     <!-- <input matInput placeholder="Field Type"> -->
-                    <mat-select formControlName="status" required>
+                    <mat-select formControlName="status" [required]="!data.isFilter" [disabled]="data.isReadonly">
                         <mat-option>--</mat-option>
-                        <mat-option value="Textbox">Active</mat-option>
-                        <mat-option value="Password">Inactive</mat-option>
+                        <mat-option value="Active">Active</mat-option>
+                        <mat-option value="Inactive">Inactive</mat-option>
                     </mat-select>
                     <mat-error *ngIf="form.controls['status'].errors?.required">
                         Please choose this product category status
                     </mat-error>
                 </mat-form-field>
             </div>
-            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center" *ngIf="!data.isFilter">
                 <div class="mat-form-field-wrapper file-input-container">
                     <mat-label>Upload an Image</mat-label>
-                    <input id="singleFile" type="file" />
+                    <input id="singleFile" type="file" [readonly]="data.isReadonly" [disabled]="data.isReadonly"/>
                 </div>
             </div>
             <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
                 <mat-form-field appearance="fill">
                     <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" formControlName="description" required>
+                    <input matInput placeholder="Description" formControlName="description" [required]="!data.isFilter"
+                        [readonly]="data.isReadonly">
                     <mat-error *ngIf="form.controls['description'].errors?.required">
                         Please enter Description
                     </mat-error>
@@ -45,12 +61,12 @@
                 <mat-form-field class="example-chip-list" appearance="fill">
                     <mat-label>Keywords</mat-label>
                     <mat-chip-list #chipList aria-label="Fruit selection" formControlName="keywords">
-                        <mat-chip *ngFor="let fruit of keywords.value" [selectable]="selectable" [removable]="removable"
-                            (removed)="remove(fruit)">
+                        <mat-chip *ngFor="let fruit of keywords.value; let i = index" [selectable]="selectable"
+                            [removable]="removable" (removed)="remove(i)" [disabled]="data.isReadonly">
                             {{fruit}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="Keywords" [matChipInputFor]="chipList" 
+                        <input placeholder="Keywords" [matChipInputFor]="chipList" [readonly]="data.isReadonly"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
                             (matChipInputTokenEnd)="add($event)">
                     </mat-chip-list>
