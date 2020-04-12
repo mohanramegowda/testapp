@@ -16,6 +16,8 @@ import {
   tap
 } from "rxjs/operators";
 import { Observable } from 'rxjs/internal/Observable';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProductCategoryService } from '@app/services/product-category.service';
 
 /**
  * The Json object for to-do list data.
@@ -115,7 +117,6 @@ export class ChecklistDatabase {
 export class SchoolApplocationFormComponent implements OnInit {
 
   ngOnInit(): void {
-
   }
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
   flatNodeMap = new Map<TreeItemFlatNode, TreeItemNode>();
@@ -140,12 +141,15 @@ export class SchoolApplocationFormComponent implements OnInit {
 
   filterNode: TreeItemNode;
 
-  constructor(private _database: ChecklistDatabase, public dialog: MatDialog) {
+  constructor(private _database: ChecklistDatabase, public dialog: MatDialog, private router: Router,
+    private route: ActivatedRoute, private productCategoryService: ProductCategoryService) {
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel,
       this.isExpandable, this.getChildren);
     this.treeControl = new FlatTreeControl<TreeItemFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
+    this.productCategoryService.getAllProductCategories().subscribe((categories: TreeItemNode[]) => {
+      this._database.dataChange.next(categories && categories.length ? categories : []);
+    })
     _database.dataChange.subscribe(data => {
       this.dataSource.data = data;
     });
@@ -280,17 +284,23 @@ export class SchoolApplocationFormComponent implements OnInit {
       const index = this._database.data.indexOf(nestedNode);
       this._database.data.splice(index, 1);
       this._database.dataChange.next(this._database.data);
+      this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
+        console.log(d);
+      });
     }
   }
 
   RemoveChildItem(node: TreeItemFlatNode) {
     const parentNode = this.getParentNode(node);
-    if(parentNode) {
+    if (parentNode) {
       const nestedNode = this.flatNodeMap.get(parentNode);
       const nodeToDelete = this.flatNodeMap.get(node);
       const index = nestedNode.children ? nestedNode.children.indexOf(nodeToDelete) : -1;
       nestedNode.children.splice(index, 1);
       this._database.dataChange.next(this._database.data);
+      this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
+        console.log(d);
+      });
     }
     else {
       this.RemoveRootItem(node);
@@ -326,6 +336,9 @@ export class SchoolApplocationFormComponent implements OnInit {
 
     dialogRef.subscribe(result => {
       this.addNewRootItem(result);
+      this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
+        console.log(d);
+      });
     });
   }
 
@@ -341,6 +354,9 @@ export class SchoolApplocationFormComponent implements OnInit {
       if (result) {
         result.children = result.categoryType === 'noChildren' ? result.children : [];
         this._database.insertChildItem(node, result!);
+        this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
+          console.log(d);
+        });
       }
     });
   }
@@ -388,6 +404,9 @@ export class SchoolApplocationFormComponent implements OnInit {
       if (result) {
         result.children = result.categoryType === 'noChildren' ? result.children : [];
         this._database.updateNode(nestedNode!, result);
+        this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
+          console.log(d);
+        });
       }
     });
   }
@@ -399,9 +418,15 @@ export class SchoolApplocationFormComponent implements OnInit {
     const dialogRef = this.showDialog(node);
   }
 
+  ManageProducts(node) {
+    this.router.navigate(['./products-management'], { relativeTo: this.route });
+    // this.router.navigate(['creation-console/template-console/school-application-form/products-management']);
+  }
+
   private showDialog(node?: TreeItemNode): Observable<TreeItemNode> {
     const dialogRef = this.dialog.open(EditSectionTitleDialogComponent, {
-      data: node
+      data: node,
+      width: "90%"
     });
     return dialogRef.afterClosed()
       .pipe(

@@ -18,7 +18,7 @@
             <button mat-icon-button (click)="CategoryDetailsReadOnly(node)">
                 <mat-icon>remove_red_eye</mat-icon>
             </button>
-            <button mat-icon-button (click)="addNewItem(node)">
+            <button mat-icon-button (click)="ManageProducts(node)">
                 <mat-icon>settings</mat-icon>
             </button>
         </mat-tree-node>
@@ -55,7 +55,7 @@
             <button mat-icon-button (click)="CategoryDetailsReadOnly(node)">
                 <mat-icon>remove_red_eye</mat-icon>
             </button>
-            <button mat-icon-button (click)="addNewItem(node)">
+            <button mat-icon-button (click)="ManageProducts(node)">
                 <mat-icon>settings</mat-icon>
             </button>
         </mat-tree-node>
@@ -126,6 +126,7 @@
         <mat-step>
             <ng-template matStepLabel>Edit Form Fields and Sections</ng-template>
             <ng-container *ngTemplateOutlet="editFormFieldsStepContent"></ng-container>
+            
             <div align="right">
                 <button mat-stroked-button class="stroked-button" matStepperNext>Next</button>
             </div>

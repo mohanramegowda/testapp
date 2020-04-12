@@ -8,6 +8,12 @@ export const routes: Routes = [
     {
         path: '',
         component: SchoolApplocationFormComponent
+    },
+    {
+        path: 'products-management',
+        loadChildren: () =>
+            import('@modules/template-console/components/school-application-form/components/products-management/products-management.module')
+                .then(m => m.ProductsManagementModule)
     }
 ];
 

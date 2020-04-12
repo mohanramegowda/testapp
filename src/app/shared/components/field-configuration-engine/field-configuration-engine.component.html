@@ -1,42 +1,44 @@
-<mat-card class="card-margin" *ngFor="let field of fields">
-    <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.lg="2px"
-        fxLayoutGap.sm="0px">
-        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
-            <span>Field name: </span>
-            <span><strong>{{field.label}}</strong></span>
+<div class="products-container">
+    <mat-card class="card-margin" *ngFor="let field of fields">
+        <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.lg="2px"
+            fxLayoutGap.sm="0px">
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Field name: </span>
+                <span><strong>{{field.label}}</strong></span>
+            </div>
+
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Field Type: </span>
+                <span><strong>{{field.type}}</strong></span>
+            </div>
+
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Default Value: </span>
+                <span>
+                    <strong *ngIf="field.defaultValue">{{field.defaultValue}}</strong>
+                    <strong *ngIf="!field.defaultValue">--blank--</strong>
+                </span>
+            </div>
+
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Validations: </span>
+                <span>
+                    <strong *ngIf="field.validation">
+                        <ng-container *ngFor="let validation of field.validation">
+                            {{validation.name}}
+                        </ng-container>
+                    </strong>
+                </span>
+            </div>
+
+            <div fxFlex="8%" fxLayoutAlign="center center" class="cell">
+                <button mat-icon-button matTooltip="Edit" (click)="onActionsClick('Edit', field)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Delete" (click)="onActionsClick('Delete', field)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
         </div>
-        
-        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
-            <span>Field Type: </span>
-            <span><strong>{{field.type}}</strong></span>
-        </div>
-        
-        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
-            <span>Default Value: </span>
-            <span>
-                <strong *ngIf="field.defaultValue">{{field.defaultValue}}</strong>
-                <strong *ngIf="!field.defaultValue">--blank--</strong>
-            </span>
-        </div>
-        
-        <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
-            <span>Validations: </span>
-            <span>
-                <strong *ngIf="field.validation">
-                    <ng-container *ngFor="let validation of field.validation">
-                        {{validation.name}}
-                    </ng-container>
-                </strong>
-            </span>
-        </div>
-        
-        <div fxFlex="8%" fxLayoutAlign="center center" class="cell">
-            <button mat-icon-button matTooltip="Edit" (click)="onActionsClick('Edit', field)">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button matTooltip="Delete" (click)="onActionsClick('Delete', field)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </div>
-</mat-card>
+    </mat-card>
+</div>
