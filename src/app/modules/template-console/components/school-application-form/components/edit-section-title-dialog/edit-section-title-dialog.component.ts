@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { SectionDialogData } from '@app/models/section-dialog-data';
+import { TreeItemNode } from '@app/models/tree-item-node';
 
 export interface Fruit {
   name: string;
@@ -26,7 +27,7 @@ export class EditSectionTitleDialogComponent implements OnInit {
   }
 
   constructor(public dialogRef: MatDialogRef<EditSectionTitleDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SectionDialogData, private cdr: ChangeDetectorRef) {
+    @Inject(MAT_DIALOG_DATA) public data: TreeItemNode, private cdr: ChangeDetectorRef) {
     if (!this.form) {
       this.buildForm();
     }
@@ -37,6 +38,8 @@ export class EditSectionTitleDialogComponent implements OnInit {
 
   ngAfterViewInit(): void {
     if (this.data && this.form && (this.data.isEdit || this.data.isReadonly)) {
+      this.form.controls['id'].setValue(this.data.id);
+      this.form.controls['parentId'].setValue(this.data.parentId);
       this.form.controls['name'].setValue(this.data.name);
       this.form.controls['status'].setValue(this.data.status);
       this.form.controls['categoryType'].setValue(this.data.categoryType);
@@ -83,6 +86,8 @@ export class EditSectionTitleDialogComponent implements OnInit {
     }
     this.form = new FormGroup(
       {
+        id: new FormControl(''),
+        parentId: new FormControl(''),
         name: new FormControl('', validations),
         status: new FormControl('', validations),
         categoryType: new FormControl('', validations),

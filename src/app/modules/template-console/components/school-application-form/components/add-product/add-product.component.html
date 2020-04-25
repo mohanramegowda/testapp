@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>{{data}}</h1>
 <form [formGroup]="form">
-    <div mat-dialog-content>
+    <div>
         <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
             fxLayoutAlign="center">
             <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
@@ -110,7 +110,8 @@
 
 <div mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="10px">
     <button mat-stroked-button class="stroked-button" (click)="onNoClick()">Back</button>
-    <button mat-stroked-button class="stroked-button" [mat-dialog-close]="form.getRawValue()" [disabled]="form.invalid">
+    <button mat-stroked-button class="stroked-button" [disabled]="form.invalid"
+    (click)="onSubmit()">
         Submit
     </button>
     &nbsp;

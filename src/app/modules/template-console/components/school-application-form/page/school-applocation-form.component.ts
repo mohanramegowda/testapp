@@ -92,6 +92,17 @@ export class ChecklistDatabase {
     }
   }
 
+  insertChildren(parent: TreeItemNode, children: TreeItemNode[]) {
+    if (parent.children) {
+      parent.children.splice(0, parent.children.length);
+      children.forEach(childItem => {
+        childItem.children = childItem.categoryType === 'noChildren' ? childItem.children : [];
+        parent.children.push(childItem);
+      });
+      this.dataChange.next(this.data);
+    }
+  }
+
   updateItem(node: TreeItemNode, name: string) {
     node.name = name;
     this.dataChange.next(this.data);
@@ -147,9 +158,25 @@ export class SchoolApplocationFormComponent implements OnInit {
       this.isExpandable, this.getChildren);
     this.treeControl = new FlatTreeControl<TreeItemFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-    this.productCategoryService.getAllProductCategories().subscribe((categories: TreeItemNode[]) => {
-      this._database.dataChange.next(categories && categories.length ? categories : []);
-    })
+    this.productCategoryService.getAllRootCategories()
+      .pipe(
+        map(data => {
+          return data.map(category => {
+            return new TreeItemNode(
+              category.name,
+              category.status,
+              category.categoryType,
+              category.description,
+              category.keywords,
+              category.categoryType === 'noChildren' ? category.children : [],
+              category.parentId,
+              category.id
+            );
+          })
+        }))
+      .subscribe((categories: TreeItemNode[]) => {
+        this._database.dataChange.next(categories && categories.length ? categories : []);
+      });
     _database.dataChange.subscribe(data => {
       this.dataSource.data = data;
     });
@@ -273,9 +300,21 @@ export class SchoolApplocationFormComponent implements OnInit {
   addNewRootItem(node: TreeItemNode) {
     if (node) {
       node.children = node.categoryType === 'noChildren' ? node.children : [];
+      node.id = this.getRootNodeId();
       this._database.data.push(node);
       this._database.dataChange.next(this._database.data);
     }
+  }
+
+  private getRootNodeId(): number {
+    if (this._database.data)
+      return this._database.data.length + 1;
+    else
+      return 1;
+  }
+
+  private getChildNodeId(level: number, parentNodeId: number, siblingLength: number): number {
+    return parseInt(`${parentNodeId}${(siblingLength + 1)}`);
   }
 
   RemoveRootItem(node: TreeItemFlatNode) {
@@ -284,9 +323,11 @@ export class SchoolApplocationFormComponent implements OnInit {
       const index = this._database.data.indexOf(nestedNode);
       this._database.data.splice(index, 1);
       this._database.dataChange.next(this._database.data);
-      this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
-        console.log(d);
-      });
+      this.productCategoryService.deleteCategory
+        (node.id)
+        .subscribe(d => {
+          console.log(d);
+        });
     }
   }
 
@@ -298,7 +339,7 @@ export class SchoolApplocationFormComponent implements OnInit {
       const index = nestedNode.children ? nestedNode.children.indexOf(nodeToDelete) : -1;
       nestedNode.children.splice(index, 1);
       this._database.dataChange.next(this._database.data);
-      this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
+      this.productCategoryService.deleteCategory(node.id).subscribe(d => {
         console.log(d);
       });
     }
@@ -328,6 +369,13 @@ export class SchoolApplocationFormComponent implements OnInit {
   }
 
   // All actions logic below
+  getNodeChildren(node: TreeItemNode) {
+    this.productCategoryService.getChildCategories(node.id).subscribe(data => {
+      this._database.insertChildren(node, data);
+      console.log(data);
+    })
+  }
+
   AddNewRootCategory() {
     const node = new TreeItemNode();
     node.isFilter = false;
@@ -335,10 +383,13 @@ export class SchoolApplocationFormComponent implements OnInit {
     const dialogRef = this.showDialog(node);
 
     dialogRef.subscribe(result => {
-      this.addNewRootItem(result);
-      this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
-        console.log(d);
-      });
+      if (result) {
+        result.parentId = -1;
+        this.productCategoryService.postAllProductCategories(result).subscribe(d => {
+          this.addNewRootItem(result);
+          console.log(d);
+        });
+      }
     });
   }
 
@@ -352,10 +403,11 @@ export class SchoolApplocationFormComponent implements OnInit {
 
     dialogRef.subscribe(result => {
       if (result) {
-        result.children = result.categoryType === 'noChildren' ? result.children : [];
-        this._database.insertChildItem(node, result!);
-        this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
-          console.log(d);
+        result.parentId = node.id;
+        this.productCategoryService.postAllProductCategories(result).subscribe((newCategory: TreeItemNode) => {
+          newCategory.children = newCategory.categoryType === 'noChildren' ? newCategory.children : [];
+          this._database.insertChildItem(node, newCategory!);
+          console.log(newCategory);
         });
       }
     });
@@ -395,19 +447,20 @@ export class SchoolApplocationFormComponent implements OnInit {
   }
 
   EditCategory(node?: TreeItemFlatNode) {
-    const nestedNode = this.flatNodeMap.get(node);
-    nestedNode.isEdit = true;
-    nestedNode.dialogTitle = 'Edit Product Category Details';
-    const dialogRef = this.showDialog(nestedNode);
+    this.productCategoryService.getCategory(node.id).subscribe(nestedNode => {
+      nestedNode.isEdit = true;
+      nestedNode.dialogTitle = 'Edit Product Category Details';
+      const dialogRef = this.showDialog(nestedNode);
 
-    dialogRef.subscribe(result => {
-      if (result) {
-        result.children = result.categoryType === 'noChildren' ? result.children : [];
-        this._database.updateNode(nestedNode!, result);
-        this.productCategoryService.postAllProductCategories(this._database.data).subscribe(d => {
-          console.log(d);
-        });
-      }
+      dialogRef.subscribe(result => {
+        if (result) {
+          this.productCategoryService.updateProductCategory(result).subscribe((updatedItem: TreeItemNode) => {
+            updatedItem.children = updatedItem.categoryType === 'noChildren' ? updatedItem.children : [];
+            this._database.updateNode(nestedNode!, updatedItem);
+            console.log(updatedItem);
+          });
+        }
+      });
     });
   }
 
@@ -418,8 +471,8 @@ export class SchoolApplocationFormComponent implements OnInit {
     const dialogRef = this.showDialog(node);
   }
 
-  ManageProducts(node) {
-    this.router.navigate(['./products-management'], { relativeTo: this.route });
+  ManageProducts(node: TreeItemNode) {
+    this.router.navigate(['./products-management', { category: node.id }], { relativeTo: this.route });
     // this.router.navigate(['creation-console/template-console/school-application-form/products-management']);
   }
 
@@ -437,7 +490,10 @@ export class SchoolApplocationFormComponent implements OnInit {
               data.status,
               data.categoryType,
               data.description,
-              data.keywords
+              data.keywords,
+              data.children,
+              data.parentId,
+              data.id
             );
         }))
   }

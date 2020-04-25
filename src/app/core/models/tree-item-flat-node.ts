@@ -3,7 +3,9 @@ import { IProduct } from "./product";
 
 /** Flat tree item node with expandable and level information */
 export class TreeItemFlatNode extends SectionDialogData {
-    level: number;
-    expandable: boolean;
-    products: IProduct[];
-  }
+  id: number;
+  level: number;
+  expandable: boolean;
+  products: IProduct[];
+  parentId: number;
+}

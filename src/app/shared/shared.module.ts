@@ -18,6 +18,7 @@ import { FieldConfigurationEngineComponent } from './components/field-configurat
 import { MainCarouselComponent } from './components/main-carousel/main-carousel.component';
 import { AddFieldDialogComponent } from './components/add-field-dialog/add-field-dialog.component';
 import { ItemsToolbarComponent } from './components/items-toolbar/items-toolbar.component';
+import { ProductsAddedComponent } from './components/products-added/products-added.component';
 
 @NgModule({
   declarations: [MainSidebarComponent, FieldConfigurationEngineComponent,
@@ -27,7 +28,8 @@ import { ItemsToolbarComponent } from './components/items-toolbar/items-toolbar.
     DeleteThisDirectiveDirective,
     MainCarouselComponent,
     AddFieldDialogComponent,
-    ItemsToolbarComponent],
+    ItemsToolbarComponent,
+    ProductsAddedComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -51,7 +53,8 @@ import { ItemsToolbarComponent } from './components/items-toolbar/items-toolbar.
     SubmissionListComponent,
     FieldConfigurationEngineComponent,
     AddFieldDialogComponent,
-    ItemsToolbarComponent
+    ItemsToolbarComponent,
+    ProductsAddedComponent
   ],
   entryComponents: [
     AddFieldDialogComponent,

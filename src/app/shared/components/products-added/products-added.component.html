@@ -1,0 +1,46 @@
+<div class="products-container">
+    <mat-card class="card-margin" *ngFor="let product of products">
+        <div fxLayout fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.lg="2px"
+            fxLayoutGap.sm="0px">
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Product name: </span>
+                <span><strong>{{product.name}}</strong></span>
+            </div>
+
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Status: </span>
+                <span><strong>{{product.status}}</strong></span>
+            </div>
+
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Unit: </span>
+                <span>
+                    <strong *ngIf="product.unit">{{product.unit}}</strong>
+                    <strong *ngIf="!product.unit">--blank--</strong>
+                </span>
+            </div>
+
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Unit Price: </span>
+                <span><strong>{{product.unitPrice}}</strong></span>
+            </div>
+            
+            <div fxFlex="23%" fxLayoutAlign="center center" class="cell">
+                <span>Added Date: </span>
+                <span><strong>{{product.addedDate}}</strong></span>
+            </div>
+
+            <div fxFlex="16%" fxLayoutAlign="center center" class="cell">
+                <button mat-icon-button matTooltip="Edit" (click)="onActionsClick('Edit', product)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Edit" (click)="onActionsClick('Edit', product)">
+                    <mat-icon>remove_red_eye</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Delete" (click)="onActionsClick('Delete', product)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</div>

@@ -1,7 +1,7 @@
 <div class="full-height products-container">
     <items-toolbar (change)="changeViewType($event)"></items-toolbar>
-    <app-field-configuration-engine [fields]="fields" (emitter)="OnActions($event)">
-    </app-field-configuration-engine>
+    <app-products-added [products]="products" (emitter)="OnActions($event)">
+    </app-products-added>
     <div align="right">
         <button mat-stroked-button class="stroked-button" (click)="onSubmit()">Submit</button>
     </div>

@@ -1,0 +1,55 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="filter-sidenav">
+        <mat-accordion displayMode="flat" multi="true">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>Categories</h4>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <!-- <div class="categories-wrapper categories-dropdown" perfectScrollbar>
+                    <app-category-list [categories]="categories" [categoryParentId]="0" (change)="onChangeCategory($event)"></app-category-list>
+                </div> -->
+                <div>
+                    Mohan
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-sidenav>
+    <mat-sidenav-content class="filter-row">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+            class="filter-row mat-elevation-z1 text-muted">
+            <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </div>
+        <div fxLayout="row wrap" class="products-wrapper">
+            <div fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
+                <mat-card class="product-item text-center">
+                    <mat-chip-list>
+                        <mat-chip color="warn" selected="true">10% OFF</mat-chip>
+                    </mat-chip-list>
+                    <a [routerLink]="['/products']" class="image-link">
+                        <img src="http://www.emporium.themeseason.com/assets/images/products/keyboard/1-medium.png"
+                            alt="">
+                    </a>
+                    <h4 class="category text-muted">Special Services</h4>
+                    <a [routerLink]="['/products']" class="title text-truncate">
+                        Keyboard
+                    </a>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
+                        <div fxLayout="column" fxLayoutAlign="center start">
+                            <span class="old-price text-muted"><span>$100</span></span>
+                            <span class="new-price">$120</span>
+                        </div>
+                        <!-- <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating> -->
+                    </div>
+                    <div class="divider mt-2"></div>
+                    <div class="icons">
+                        <!-- <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls> -->
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

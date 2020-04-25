@@ -3,6 +3,8 @@ import { IProduct } from '@app/models/product';
 import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
 import { FormGroup, ValidatorFn, FormControl, Validators } from '@angular/forms';
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { ProductService } from '@app/services/product-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -25,7 +27,9 @@ export class AddProductComponent implements OnInit {
     return this.form.get('keywords');
   }
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute) {
     if (!this.form) {
       this.buildForm();
     }
@@ -45,13 +49,13 @@ export class AddProductComponent implements OnInit {
         status: new FormControl('', validations),
         unit: new FormControl('', validations),
         unitPrice: new FormControl('', validations),
-        color: new FormControl('', validations),
-        modelName: new FormControl('', validations),
-        brand: new FormControl('', validations),
-        addedDate: new FormControl(null, validations),
+        color: new FormControl(''),
+        modelName: new FormControl(''),
+        brand: new FormControl(''),
+        addedDate: new FormControl(null),
         // image: new FormControl(null, validations),
         description: new FormControl('', validations),
-        keywords: new FormControl([], validations),
+        keywords: new FormControl([]),
       }
     )
   }
@@ -82,8 +86,20 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  onNoClick(){
+  onNoClick() {
     // todo pending implementation
+  }
+
+  onSubmit() {
+
+    const product = this.form.getRawValue();
+    product.categoryId = parseInt(this.route.snapshot.paramMap.get('category'));
+    this.productService.postProduct
+      (product)
+      .subscribe(d => {
+        this.router.navigate(["../"], {relativeTo: this.route.parent});
+        console.log(d);
+      });
   }
 
 }

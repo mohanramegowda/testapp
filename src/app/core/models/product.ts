@@ -1,4 +1,6 @@
 export interface IProduct{
+    id: number;
+    categoryId: number;
     name: string;
     status: string;
     unit: string;
@@ -7,8 +9,7 @@ export interface IProduct{
     modelName: string;
     brand: string;
     addedDate: Date;
-    image: any;     // todo image uploader
-    categoryId: string;    
+    image: any;     // todo image uploader  
     description: string;
     keywords: string[];
     isFilter: boolean;

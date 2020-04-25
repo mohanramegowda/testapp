@@ -11,8 +11,284 @@
       "author": "typicode2"
     }
   ],
-  "productCategories": [],
-  "products": [],
+  "productCategories": [
+    {
+      "name": "1",
+      "status": "Active",
+      "categoryType": "hasChildren",
+      "description": "1",
+      "keywords": [
+        "1"
+      ],
+      "parentId": -1,
+      "id": 1
+    },
+    {
+      "name": "11",
+      "status": "Active",
+      "categoryType": "hasChildren",
+      "description": "11",
+      "keywords": [
+        "11"
+      ],
+      "parentId": 1,
+      "id": 2
+    }
+  ],
+  "products": [
+    {
+      "name": "test product",
+      "status": "Active",
+      "unit": "kg",
+      "unitPrice": "50",
+      "color": "white",
+      "modelName": "basmati",
+      "brand": "basmati",
+      "addedDate": "20",
+      "description": "rice",
+      "keywords": [
+        "rice"
+      ],
+      "id": 1,
+      "categoryId": 1
+    },
+    {
+      "name": "test product",
+      "status": "Active",
+      "unit": "kg",
+      "unitPrice": "50",
+      "color": "white",
+      "modelName": "basmati",
+      "brand": "basmati",
+      "addedDate": "20",
+      "description": "rice",
+      "keywords": [
+        "rice"
+      ],
+      "id": 2,
+      "categoryId": 1
+    },
+    {
+      "name": "an",
+      "status": "Inactive",
+      "unit": "Quantity",
+      "unitPrice": "100",
+      "color": "red",
+      "modelName": "c",
+      "brand": "fds",
+      "addedDate": "fds",
+      "description": "fds",
+      "keywords": [
+        "fsdf"
+      ],
+      "id": 3,
+      "categoryId": 1
+    },
+    {
+      "name": "test",
+      "status": "Active",
+      "unit": "test",
+      "unitPrice": "test",
+      "color": "test",
+      "modelName": "test",
+      "brand": "test",
+      "addedDate": "test",
+      "description": "test",
+      "keywords": [
+        "test"
+      ],
+      "categoryId": 1,
+      "id": 4
+    },
+    {
+      "name": "sfs",
+      "status": "Active",
+      "unit": "fdsf",
+      "unitPrice": "fdsfsd",
+      "color": "fdsfsd",
+      "modelName": "fdsfsd",
+      "brand": "dsfsd",
+      "addedDate": "fdsfsd",
+      "description": "fdsfsd",
+      "keywords": [
+        "fdsfs"
+      ],
+      "categoryId": 1,
+      "id": 5
+    },
+    {
+      "name": "r",
+      "status": "Active",
+      "unit": "e",
+      "unitPrice": "3",
+      "color": "3",
+      "modelName": "3",
+      "brand": "3",
+      "addedDate": "3",
+      "description": "3",
+      "keywords": [
+        "3"
+      ],
+      "categoryId": 2,
+      "id": 6
+    },
+    {
+      "name": "test",
+      "status": "Active",
+      "unit": "rwwa",
+      "unitPrice": "ra",
+      "color": "rew",
+      "modelName": "rew",
+      "brand": "rew",
+      "addedDate": "rew",
+      "description": "rew",
+      "keywords": [
+        "rew"
+      ],
+      "categoryId": 1,
+      "id": 7
+    },
+    {
+      "name": "ddd",
+      "status": "Active",
+      "unit": "d",
+      "unitPrice": "d",
+      "color": "d",
+      "modelName": "d",
+      "brand": "d",
+      "addedDate": "d",
+      "description": "d",
+      "keywords": [
+        "d"
+      ],
+      "categoryId": 3,
+      "id": 8
+    },
+    {
+      "name": "f",
+      "status": "Active",
+      "unit": "f",
+      "unitPrice": "ff",
+      "color": "f",
+      "modelName": "f",
+      "brand": "f",
+      "addedDate": "f",
+      "description": "f",
+      "keywords": [
+        "v"
+      ],
+      "categoryId": 11,
+      "id": 9
+    },
+    {
+      "name": "d",
+      "status": "Active",
+      "unit": "d",
+      "unitPrice": "d",
+      "color": "d",
+      "modelName": "d",
+      "brand": "d",
+      "addedDate": "d",
+      "description": "d",
+      "keywords": [
+        "d"
+      ],
+      "categoryId": 2,
+      "id": 10
+    },
+    {
+      "name": "f",
+      "status": "Active",
+      "unit": "f",
+      "unitPrice": "f",
+      "color": "f",
+      "modelName": "f",
+      "brand": "f",
+      "addedDate": "f",
+      "description": "f",
+      "keywords": [
+        "f"
+      ],
+      "categoryId": 11,
+      "id": 11
+    },
+    {
+      "name": "tes",
+      "status": "Active",
+      "unit": "test",
+      "unitPrice": "test",
+      "color": "test",
+      "modelName": "etst",
+      "brand": "test",
+      "addedDate": "tes",
+      "description": "tes",
+      "keywords": [
+        "tes"
+      ],
+      "categoryId": 12,
+      "id": 12
+    },
+    {
+      "name": "sec",
+      "status": "Active",
+      "unit": "c",
+      "unitPrice": "c",
+      "color": "c",
+      "modelName": "c",
+      "brand": "c",
+      "addedDate": "c",
+      "description": "c",
+      "keywords": [
+        "cc"
+      ],
+      "categoryId": 21,
+      "id": 13
+    },
+    {
+      "name": "product of child",
+      "status": "Active",
+      "unit": "f",
+      "unitPrice": "f",
+      "color": "f",
+      "modelName": "f",
+      "brand": "f",
+      "addedDate": "f",
+      "description": "f",
+      "keywords": [
+        "f"
+      ],
+      "categoryId": 4,
+      "id": 14
+    },
+    {
+      "name": "s",
+      "status": "Active",
+      "unit": "s",
+      "unitPrice": "s",
+      "color": "",
+      "modelName": "",
+      "brand": "",
+      "addedDate": null,
+      "description": "s",
+      "keywords": [],
+      "categoryId": 1,
+      "id": 15
+    },
+    {
+      "name": "s",
+      "status": "Active",
+      "unit": "s",
+      "unitPrice": "s",
+      "color": "",
+      "modelName": "",
+      "brand": "",
+      "addedDate": null,
+      "description": "s",
+      "keywords": [],
+      "categoryId": 1,
+      "id": 16
+    }
+  ],
   "comments": [
     {
       "id": 1,
