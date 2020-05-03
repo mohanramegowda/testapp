@@ -26,6 +26,7 @@
 
 .products-wrapper {
     margin: 8px -8px;
+    min-height: 50vh;
     .col {
         padding: 8px;
     }
@@ -48,7 +49,6 @@
     }
     img {
         max-width: 100%;
-        margin-bottom: 12px;
     }
     .category {
         margin-bottom: 4px;
@@ -81,14 +81,23 @@
     overflow: hidden;
 }
 
-.text-truncate{
+.text-truncate {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden !important;
 }
-.text-right{
+.text-right {
     text-align: right;
 }
 .text-center {
     text-align: center;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+.example-container > * {
+    width: 98%;
 }

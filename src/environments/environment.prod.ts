@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3004'
+  apiUrl: 'https://my-json-server.typicode.com/mohanramegowda/testdb'
 };

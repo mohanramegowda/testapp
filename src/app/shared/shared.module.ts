@@ -19,6 +19,7 @@ import { MainCarouselComponent } from './components/main-carousel/main-carousel.
 import { AddFieldDialogComponent } from './components/add-field-dialog/add-field-dialog.component';
 import { ItemsToolbarComponent } from './components/items-toolbar/items-toolbar.component';
 import { ProductsAddedComponent } from './components/products-added/products-added.component';
+import { CategorySideMenuComponent } from './components/category-side-menu/category-side-menu.component';
 
 @NgModule({
   declarations: [MainSidebarComponent, FieldConfigurationEngineComponent,
@@ -29,7 +30,8 @@ import { ProductsAddedComponent } from './components/products-added/products-add
     MainCarouselComponent,
     AddFieldDialogComponent,
     ItemsToolbarComponent,
-    ProductsAddedComponent],
+    ProductsAddedComponent,
+    CategorySideMenuComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -54,7 +56,8 @@ import { ProductsAddedComponent } from './components/products-added/products-add
     FieldConfigurationEngineComponent,
     AddFieldDialogComponent,
     ItemsToolbarComponent,
-    ProductsAddedComponent
+    ProductsAddedComponent,
+    CategorySideMenuComponent
   ],
   entryComponents: [
     AddFieldDialogComponent,

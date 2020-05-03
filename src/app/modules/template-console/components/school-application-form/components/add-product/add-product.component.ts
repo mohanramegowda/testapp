@@ -17,6 +17,7 @@ export class AddProductComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  imageFile: string | ArrayBuffer;
   public dialogRef: MatDialogRef<AddProductComponent>;
   @Inject(MAT_DIALOG_DATA) public data: IProduct;
 
@@ -53,7 +54,7 @@ export class AddProductComponent implements OnInit {
         modelName: new FormControl(''),
         brand: new FormControl(''),
         addedDate: new FormControl(null),
-        // image: new FormControl(null, validations),
+        image: new FormControl('', validations),
         description: new FormControl('', validations),
         keywords: new FormControl([]),
       }
@@ -91,15 +92,24 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
-
     const product = this.form.getRawValue();
     product.categoryId = parseInt(this.route.snapshot.paramMap.get('category'));
+    product.image = this.imageFile ? this.imageFile.toString() : '';
     this.productService.postProduct
       (product)
       .subscribe(d => {
         this.router.navigate(["../"], {relativeTo: this.route.parent});
         console.log(d);
       });
+  }
+
+  onFileChange(event) {
+    let fileList: FileList = event.target.files;    
+    var myReader:FileReader = new FileReader();
+    myReader.onloadend = (e) => {
+      this.imageFile = myReader.result;
+    }
+    myReader.readAsDataURL(<File>fileList[0]);
   }
 
 }

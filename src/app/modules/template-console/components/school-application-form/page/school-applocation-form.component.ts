@@ -300,21 +300,9 @@ export class SchoolApplocationFormComponent implements OnInit {
   addNewRootItem(node: TreeItemNode) {
     if (node) {
       node.children = node.categoryType === 'noChildren' ? node.children : [];
-      node.id = this.getRootNodeId();
       this._database.data.push(node);
       this._database.dataChange.next(this._database.data);
     }
-  }
-
-  private getRootNodeId(): number {
-    if (this._database.data)
-      return this._database.data.length + 1;
-    else
-      return 1;
-  }
-
-  private getChildNodeId(level: number, parentNodeId: number, siblingLength: number): number {
-    return parseInt(`${parentNodeId}${(siblingLength + 1)}`);
   }
 
   RemoveRootItem(node: TreeItemFlatNode) {
@@ -385,9 +373,8 @@ export class SchoolApplocationFormComponent implements OnInit {
     dialogRef.subscribe(result => {
       if (result) {
         result.parentId = -1;
-        this.productCategoryService.postAllProductCategories(result).subscribe(d => {
-          this.addNewRootItem(result);
-          console.log(d);
+        this.productCategoryService.postAllProductCategories(result).subscribe(response => {
+          this.addNewRootItem(response);
         });
       }
     });
@@ -450,12 +437,19 @@ export class SchoolApplocationFormComponent implements OnInit {
     this.productCategoryService.getCategory(node.id).subscribe(nestedNode => {
       nestedNode.isEdit = true;
       nestedNode.dialogTitle = 'Edit Product Category Details';
+      if (nestedNode.keywords) {
+        nestedNode.keywords = nestedNode.keywords ?
+          nestedNode.keywords.toString().split(',') : nestedNode.keywords;
+      }
+
       const dialogRef = this.showDialog(nestedNode);
 
       dialogRef.subscribe(result => {
         if (result) {
           this.productCategoryService.updateProductCategory(result).subscribe((updatedItem: TreeItemNode) => {
+            const flatNode = this.flatNodeMap.get(node);
             updatedItem.children = updatedItem.categoryType === 'noChildren' ? updatedItem.children : [];
+            Object.assign(flatNode, updatedItem);
             this._database.updateNode(nestedNode!, updatedItem);
             console.log(updatedItem);
           });
@@ -465,10 +459,17 @@ export class SchoolApplocationFormComponent implements OnInit {
   }
 
   CategoryDetailsReadOnly(node?: TreeItemNode) {
-    node.isEdit = false;
-    node.isReadonly = true;
-    node.isFilter = false;
-    const dialogRef = this.showDialog(node);
+    this.productCategoryService.getCategory(node.id).subscribe(nestedNode => {
+      nestedNode.isEdit = false;
+      nestedNode.isReadonly = true;
+      nestedNode.isFilter = false;
+      if (nestedNode.keywords) {
+        nestedNode.keywords = nestedNode.keywords ?
+          nestedNode.keywords.toString().split(',') : nestedNode.keywords;
+      }
+      const dialogRef = this.showDialog(nestedNode);
+    }
+    );
   }
 
   ManageProducts(node: TreeItemNode) {

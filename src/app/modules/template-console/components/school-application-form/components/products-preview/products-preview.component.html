@@ -7,39 +7,68 @@
                         <h4>Categories</h4>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <!-- <div class="categories-wrapper categories-dropdown" perfectScrollbar>
-                    <app-category-list [categories]="categories" [categoryParentId]="0" (change)="onChangeCategory($event)"></app-category-list>
-                </div> -->
                 <div>
-                    Mohan
+                    <app-category-side-menu [categories]="productCategories" [categoryParentId]="-1"
+                        (change)="onChangeCategory($event)">
+                    </app-category-side-menu>
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-sidenav>
     <mat-sidenav-content class="filter-row">
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+        <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
             class="filter-row mat-elevation-z1 text-muted">
             <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>more_vert</mat-icon>
             </button>
-        </div>
-        <div fxLayout="row wrap" class="products-wrapper">
-            <div fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
+        </div> -->
+        <div fxLayout="row wrap" fxLayout.sm="row wrap" fxLayout.xs="row wrap" fxLayoutGap="15px" fxLayoutGap.xs="15px"
+            fxLayoutGap.sm="15px" fxLayoutAlign="start">
+            <div class="example-container" fxFlex="23%" fxFlex.xs="45%" fxFlex.xs="45%" fxLayoutAlign="center center"
+                *ngFor="let product of products">
                 <mat-card class="product-item text-center">
                     <mat-chip-list>
                         <mat-chip color="warn" selected="true">10% OFF</mat-chip>
                     </mat-chip-list>
                     <a [routerLink]="['/products']" class="image-link">
-                        <img src="http://www.emporium.themeseason.com/assets/images/products/keyboard/1-medium.png"
-                            alt="">
+                        <img [src]="product.image ? product.image : ''" alt="">
+                        <!--Use images with 480*360 -->
                     </a>
-                    <h4 class="category text-muted">Special Services</h4>
+                    <h4 class="category text-muted">{{product.name}}</h4>
                     <a [routerLink]="['/products']" class="title text-truncate">
-                        Keyboard
+                        {{product.name}}
                     </a>
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
                         <div fxLayout="column" fxLayoutAlign="center start">
-                            <span class="old-price text-muted"><span>$100</span></span>
+                            <span class="old-price text-muted"><span *ngIf="false">$100</span></span>
+                            <span class="new-price">$120</span>
+                        </div>
+                        <!-- <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating> -->
+                    </div>
+                    <div class="divider mt-2"></div>
+                    <div class="icons">
+                        <!-- <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls> -->
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+        <div fxLayout="row wrap" class="products-wrapper">
+            <div fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col" *ngFor="let product of products">
+                <mat-card class="product-item text-center">
+                    <mat-chip-list>
+                        <mat-chip color="warn" selected="true">10% OFF</mat-chip>
+                    </mat-chip-list>
+                    <a [routerLink]="['/products']" class="image-link">
+                        <img [src]="product.image ? product.image : ''" alt="">
+                        <!--Use images with 480*360 -->
+                    </a>
+                    <h4 class="category text-muted">{{product.name}}</h4>
+                    <a [routerLink]="['/products']" class="title text-truncate">
+                        {{product.name}}
+                    </a>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
+                        <div fxLayout="column" fxLayoutAlign="center start">
+                            <span class="old-price text-muted"><span *ngIf="false">$100</span></span>
                             <span class="new-price">$120</span>
                         </div>
                         <!-- <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating> -->
