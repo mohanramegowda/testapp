@@ -12,8 +12,8 @@ export class ProductCategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProductCategories(): Observable<TreeItemNode[]> {
-    return this.http.get<TreeItemNode[]>(`${environment.apiUrl}/categories`);
+  getAllProductCategories(templateId: number): Observable<TreeItemNode[]> {
+    return this.http.get<TreeItemNode[]>(`${environment.apiUrl}/categories?templateId=${templateId}`);
   }
 
   postAllProductCategories(data: TreeItemNode[] | TreeItemNode) {
@@ -24,16 +24,16 @@ export class ProductCategoryService {
     return this.http.put(`${environment.apiUrl}/categories/${data.id}`, data);
   }
 
-  getAllRootCategories(): Observable<TreeItemNode[]> {
-    return this.http.get<TreeItemNode[]>(`${environment.apiUrl}/categories?parentId=-1`);
+  getAllRootCategories(templateId): Observable<TreeItemNode[]> {
+    return this.http.get<TreeItemNode[]>(`${environment.apiUrl}/categories?parentId=-1&templateId=${templateId}`);
   }
 
   getCategory(categoryId: number): Observable<TreeItemNode> {
     return this.http.get(`${environment.apiUrl}/categories/${categoryId}`);
   }
 
-  getChildCategories(parentId: number): Observable<TreeItemNode[]> {
-    return this.http.get<TreeItemNode[]>(`${environment.apiUrl}/categories?parentId=${parentId}`);
+  getChildCategories(parentId: number, templateId: number): Observable<TreeItemNode[]> {
+    return this.http.get<TreeItemNode[]>(`${environment.apiUrl}/categories?parentId=${parentId}&templateId=${templateId}`);
   }
 
   deleteCategory(categoryId: number) {

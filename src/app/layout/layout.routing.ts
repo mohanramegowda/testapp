@@ -30,8 +30,8 @@ export const routes: Routes = [
             {
                 path: 'creation-console',
                 loadChildren: () =>
-                    import('@modules/school-application-creation-console/school-application-creation-console.module')
-                    .then(m => m.SchoolApplicationCreationConsoleModule)
+                    import('@modules/ecommerce-management-console/ecommerce-management-console.module')
+                    .then(m => m.EcommerceManagementConsoleModule)
             }
         ]
     },

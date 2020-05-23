@@ -10,26 +10,9 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'login-registration',
-                pathMatch: 'full'
-            },
-            {
-                path: 'login-registration',
                 loadChildren: () =>
-                    import('@modules/template-console/components/login-registration/login-registration.module')
-                        .then(m => m.LoginRegistrationModule)
-            },
-            {
-                path: 'school-application-form',
-                loadChildren: () =>
-                    import('@modules/template-console/components/school-application-form/school-application-form.module')
-                        .then(m => m.SchoolApplicationFormModule)
-            },
-            {
-                path: 'application-fee',
-                loadChildren: () =>
-                    import('@modules/template-console/components/application-fee/application-fee.module')
-                        .then(m => m.ApplicationFeeModule)
+                import('@modules/template-console/components/category-management/category-management.module')
+                    .then(m => m.CategoryManagementModule)
             }
         ]
     }

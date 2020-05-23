@@ -3,8 +3,8 @@
         <div *ngFor="let template of templateList">
             <mat-divider></mat-divider>
             <div class="template-item">
-                <span fxLayoutAlign="start center" class="school-title">
-                    {{template.title}}
+                <span fxLayoutAlign="start center" class="general-title">
+                    {{template.name}}
                 </span>
                 <span fxFlex></span>
                 <span fxLayoutAlign="end center">
@@ -12,9 +12,13 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="OnEnterTemplate(template.id)">
                             <mat-icon>edit</mat-icon>
                             <span>Edit</span>
+                        </button>
+                        <button mat-menu-item (click)="OnManageProducts(template.id)">
+                            <mat-icon>settings</mat-icon>
+                            <span>Manage Products</span>
                         </button>
                         <button mat-menu-item>
                             <mat-icon>delete</mat-icon>
@@ -40,7 +44,7 @@
     </div>
     <br />
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
-        <button mat-stroked-button class="stroked-button" (click)="OnCreateNewTemplate()" fxLayoutAlign="center center">
+        <button mat-stroked-button class="stroked-button" (click)="OnEnterTemplate()" fxLayoutAlign="center center">
             <mat-icon>add</mat-icon>
             Create a new Template
         </button>

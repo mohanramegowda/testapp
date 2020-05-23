@@ -14,6 +14,7 @@ export class TreeItemNode extends SectionDialogData {
     public children?: TreeItemNode[],
     public parentId?: number,
     public id?: number,
+    public templateId?: number,
     public products?: IProduct[],
     isFilter?: boolean,
     isEdit?: boolean,

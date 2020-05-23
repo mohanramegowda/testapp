@@ -1,0 +1,20 @@
+.mat-expansion-panel {
+    width: 100%;
+    margin-top: 0.5%;
+}
+
+.example-container > * {
+    width: 98%;
+  }
+
+::ng-deep .mat-tree-node {
+    overflow-x: auto !important;
+}
+
+.mat-tree {
+    min-height: 50vh;
+}
+
+::ng-deep mat-step-header[aria-selected="true"] ~ .mat-stepper-vertical-line::before {
+    display: none !important;
+  }

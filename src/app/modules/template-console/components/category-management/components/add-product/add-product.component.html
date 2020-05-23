@@ -1,0 +1,129 @@
+<h1 mat-dialog-title>{{data}}</h1>
+<form [formGroup]="form">
+    <div>
+        <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
+            fxLayoutAlign="center">
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Enter Product Category Name" formControlName="name" [required]="!data"
+                        [readonly]="isEdit">
+                    <mat-error *ngIf="form.controls['name'].errors?.required">
+                        Please enter Product Name
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Status</mat-label>
+                    <!-- <input matInput placeholder="Field Type"> -->
+                    <mat-select formControlName="status" [required]="!data" [disabled]="isEdit">
+                        <mat-option>--</mat-option>
+                        <mat-option value="Active">Active</mat-option>
+                        <mat-option value="Inactive">Inactive</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls['status'].errors?.required">
+                        Please choose this product category status
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Unit</mat-label>
+                    <input matInput placeholder="Enter Product Unit" formControlName="unit" [required]="!data"
+                        [readonly]="isEdit">
+                    <mat-error *ngIf="form.controls['unit'].errors?.required">
+                        Please enter Unit
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Unit Price</mat-label>
+                    <input matInput placeholder="Enter Product Unit Price" formControlName="unitPrice"
+                        [required]="!data" [readonly]="isEdit">
+                    <mat-error *ngIf="form.controls['unitPrice'].errors?.required">
+                        Please enter Unit Price
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Color</mat-label>
+                    <input matInput placeholder="Enter Product Color" formControlName="color" [readonly]="isEdit">
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Model Name</mat-label>
+                    <input matInput placeholder="Enter Product Model Name" formControlName="modelName"
+                        [readonly]="isEdit">
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Brand</mat-label>
+                    <input matInput placeholder="Enter Product Brand" formControlName="brand" [readonly]="isEdit">
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Added Date</mat-label>
+                    <input matInput placeholder="Enter Product added date" formControlName="addedDate"
+                        [readonly]="isEdit">
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Description" formControlName="description" [required]="!data"
+                        [readonly]="isEdit">
+                    <mat-error *ngIf="form.controls['description'].errors?.required">
+                        Please enter Description
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="96%" fxLayoutAlign="center center">
+                <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Keywords</mat-label>
+                    <mat-chip-list #chipList aria-label="Fruit selection" formControlName="keywords">
+                        <mat-chip *ngFor="let fruit of keywords.value; let i = index" [selectable]="selectable"
+                            [removable]="removable" (removed)="remove(i)" [disabled]="data">
+                            {{fruit}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Keywords" [matChipInputFor]="chipList" [readonly]="isEdit"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="95%" fxLayoutAlign="center center">
+                <div class="mat-form-field-wrapper file-input-container">
+                    <mat-label>Upload Product Images</mat-label>
+                    <input type="file" [disabled]="isEdit" (change)="onFileChange($event)" />
+                </div>
+            </div>
+            <div class="example-container" 
+                *ngFor="let fileImage of imageFiles; let i=index">
+                <strong>{{fileImage.name}}
+                    <button mat-icon-button (click)="RemoveFile(i)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </strong>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<div mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="10px" *ngIf="!isEdit">
+    <button mat-stroked-button class="stroked-button" (click)="onNoClick()">Back</button>
+    <button mat-stroked-button class="stroked-button" [disabled]="form.invalid" (click)="onSubmit()">
+        Submit
+    </button>
+    &nbsp;
+    &nbsp;
+</div>
+<br />

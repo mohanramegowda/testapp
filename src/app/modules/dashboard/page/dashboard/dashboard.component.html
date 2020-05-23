@@ -1,12 +1,14 @@
 <div class="full-height" fxLayout="row wrap" fxLayoutGap="10px" fxLayoutGap.xs="0" fxLayoutAlign="center start">
-    <div fxFlex.sm="95%" fxFlex.xs="95%">
-        <mat-tab-group>
+    
+        <mat-tab-group fxFlex.sm="95%" fxFlex.xs="95%">
             <mat-tab label="Recent Templates">
                 <app-template-list [templateList]="templateList"></app-template-list>
             </mat-tab>
-            <mat-tab label="Recent Submissions">
-                <app-submission-list></app-submission-list>
+            <mat-tab label="Recent Orders">
+                <ng-template matTabContent>
+                    <app-submission-list></app-submission-list>
+                </ng-template>
             </mat-tab>
         </mat-tab-group>
-    </div>
+    
 </div>

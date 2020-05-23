@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
+import { TemplateService } from '@app/services/template-service.service';
 
 @Component({
   selector: 'app-my-templates',
@@ -8,25 +9,24 @@ import { Router, RouterEvent } from '@angular/router';
 })
 export class MyTemplatesComponent implements OnInit {
 
-  templateList = [{
-    title: 'Swarga Rani'
-  },
-  {
-    title: 'NPS'
-  },
-  {
-    title: 'Baldvin'
-  },
-  {
-    title: 'Gnana Ganga Vidhya Peetha'
-  }];
+  templateList: any[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private templateService: TemplateService) { }
 
   ngOnInit() {
+    this.templateService.getAllTemplates().subscribe(response => {
+      this.templateList = response;
+    })
   }
 
-  OnCreateNewTemplate() {
-    this.router.navigate(['creation-console/add-new-template']);
+  OnEnterTemplate(templateId?: number) {
+    if (templateId)
+      this.router.navigate(['creation-console/enter-template', { template: templateId }]);
+    else
+      this.router.navigate(['creation-console/enter-template']);
+  }
+
+  OnManageProducts(templateId: number) {
+    this.router.navigate(['creation-console/template-console', { template: templateId }]);
   }
 }

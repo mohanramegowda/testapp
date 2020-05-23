@@ -1,21 +1,12 @@
-<ng-template #templateDetails>
+<div class="full-height">
     <form [formGroup]="templateDetailsForm">
         <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
-            fxLayoutAlign="center">
-            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
-                <mat-form-field appearance="fill">
-                    <mat-label>Enter School Name</mat-label>
-                    <input matInput placeholder="Enter School Name" formControlName="schoolName" required>
-                    <mat-error *ngIf="templateDetailsForm.controls['schoolName'].errors?.required">
-                        Please enter School Name
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+            fxLayoutAlign="start">
+            <div class="example-container" fxFlex="98%" fxLayoutAlign="center center">
                 <mat-form-field appearance="fill">
                     <mat-label>Enter Template Name</mat-label>
-                    <input matInput placeholder="Enter Template Name" formControlName="templateName" required>
-                    <mat-error *ngIf="templateDetailsForm.controls['templateName'].errors?.required">
+                    <input matInput placeholder="Enter Template Name" formControlName="name" required>
+                    <mat-error *ngIf="templateDetailsForm.controls['name'].errors?.required">
                         Please enter Template Name
                     </mat-error>
                 </mat-form-field>
@@ -30,109 +21,12 @@
                 </mat-form-field>
             </div>
         </div>
-    </form>
-</ng-template>
-<ng-template #selectPlan>
-    <form [formGroup]="forseenApplicationForm">
-        <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
-            fxLayoutAlign="center">
-            <div class="example-container describer-content" fxFlex="100%" fxLayoutAlign="center center">
-                Our charges for reciving an application from your applicants through the services provided in our portal
-                is Rs. 50 per application.
-                So, for example if you want to recieve 700 applications then you have to pay Rs. 35000 as our service
-                charge. So, if you enter a value
-                in "Maximum number of Applications" seen below, you will not recieve more applications than the value
-                you enter here.
-                <br />
-                It is optional for you to enter this value and if you skip this step by not entering any number in
-                "Maximum number of Applications" field
-                then you will recieve as many number of applications as the applicants submit their applications and our
-                service charge will be - Number of
-                applications multiplied by Rs. 50.
-            </div>
-            <div class="example-container" fxFlex="68%" fxLayoutAlign="center center">
-                <mat-form-field appearance="fill">
-                    <mat-label>Maximum number of Applications</mat-label>
-                    <input matInput placeholder="Maximum number of Applications"
-                        formControlName="maximumNoOfApplications" type="number">
-                    <mat-error *ngIf="forseenApplicationForm.controls['maximumNoOfApplications'].errors?.required">
-                        Please enter Foreseen number of Applications
-                    </mat-error>
-                </mat-form-field>
-            </div>
+        <div fxLayoutAlign="end">
+            <button mat-stroked-button class="stroked-button" (click)="onSaveTemplateDetails()"
+            [disabled]="templateDetailsForm.invalid">
+                Submit</button>
+            &nbsp;
+            &nbsp;
         </div>
     </form>
-</ng-template>
-<ng-template #summaryAndSubmit>
-    <br />
-    <mat-card>
-        <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="15px" fxLayoutGap.sm="15px"
-            fxLayoutAlign="center">
-            <div class="example-container" fxFlex="98%" fxLayoutAlign="center center">
-                <mat-card class="summary">
-                    <div class="summary-container">
-                        <span class="summary-label">Template Name: </span>
-                        <span class="summary-value">{{ templateDetailsForm.controls['templateName'].value}}</span>
-                    </div>
-                </mat-card>
-            </div>
-            <div class="example-container" fxFlex="98%" fxLayoutAlign="center center">
-                <mat-card class="summary">
-                    <!--Todo design the layout properly-->
-                    <div class="summary-container">
-                        <span class="summary-label">School Name: </span>
-                        <span class="summary-value">{{ templateDetailsForm.controls['schoolName'].value}}</span>
-                    </div>
-                </mat-card>
-            </div>
-            <div class="example-container" fxFlex="98%" fxLayoutAlign="center center">
-                <mat-card class="summary">
-                    <span class="summary-label">Description: </span>
-                    <span class="summary-value">{{ templateDetailsForm.controls['description'].value}}</span>
-                </mat-card>
-            </div>
-            <div class="example-container" fxFlex="98%" fxLayoutAlign="center center">
-                <mat-card class="summary">
-                    <span class="summary-label">Maximum number of Applications: </span>
-                    <span
-                        class="summary-value">{{ forseenApplicationForm.controls['maximumNoOfApplications'].value}}</span>
-                </mat-card>
-            </div>
-        </div>
-    </mat-card>
-    <br />
-    <br />
-</ng-template>
-<div class="full-height">
-    <mat-horizontal-stepper #stepper fxShow="true" fxHide.lt-md="true" [linear]="true">
-        <mat-step [stepControl]="templateDetailsForm">
-            <ng-template matStepLabel>Template Details</ng-template>
-            <ng-container *ngTemplateOutlet="templateDetails"></ng-container>
-            <div align="right">
-                <button mat-stroked-button class="stroked-button" (click)="onSaveTemplateDetails()" matStepperNext>
-                    Next</button>
-            </div>
-        </mat-step>
-        <mat-step [stepControl]="forseenApplicationForm">
-            <ng-template matStepLabel>Foreseen Number of Applications</ng-template>
-            <ng-container *ngTemplateOutlet="selectPlan"></ng-container>
-            <div align="right" fxLayoutGap="10px">
-                <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
-                <button mat-stroked-button class="stroked-button" matStepperNext (click)="onSaveForeseenApplications()">
-                    Next</button>
-            </div>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Summary and Submit</ng-template>
-            <ng-container *ngTemplateOutlet="summaryAndSubmit"></ng-container>
-            <div align="right" fxLayoutGap="10px">
-                <button mat-stroked-button class="stroked-button" matStepperPrevious>Back</button>
-                <button mat-stroked-button class="stroked-button" matStepperNext>Submit</button>
-            </div>
-        </mat-step>
-    </mat-horizontal-stepper>
-    <mat-vertical-stepper #previewStepper fxShow="true" fxHide.gt-sm="true">
-
-    </mat-vertical-stepper>
-
 </div>

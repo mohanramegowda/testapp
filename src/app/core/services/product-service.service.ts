@@ -22,4 +22,16 @@ export class ProductService {
   postProduct(data) {
     return this.http.post(`${environment.apiUrl}/products`, data);
   }
+
+  updateProduct(data, productId:number) {
+    return this.http.put(`${environment.apiUrl}/products/${productId}`, data);
+  }
+
+  getProduct(productId:number) {
+    return this.http.get(`${environment.apiUrl}/products/${productId}`);
+  }
+
+  deleteProduct(productId: number) {
+    return this.http.delete(`${environment.apiUrl}/products/${productId}`);
+  }
 }
