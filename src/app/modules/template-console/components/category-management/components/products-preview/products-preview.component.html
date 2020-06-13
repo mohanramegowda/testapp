@@ -1,23 +1,23 @@
-<mat-sidenav-container>
-    <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="filter-sidenav">
-        <mat-accordion displayMode="flat" multi="true">
-            <mat-expansion-panel expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <h4>Categories</h4>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div>
-                    <app-category-side-menu [categories]="productCategories" [categoryParentId]="-1"
-                        (change)="onChangeCategory($event)">
-                    </app-category-side-menu>
-                </div>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </mat-sidenav>
-    <mat-sidenav-content class="filter-row">
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
-            class="filter-row mat-elevation-z1 text-muted" *ngIf="!sidenavOpen">
+<ng-template #categoryList>
+    <mat-accordion displayMode="flat" multi="true">
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h4>Categories</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <app-category-side-menu [categories]="productCategories" [categoryParentId]="-1"
+                    (change)="onChangeCategory($event)">
+                </app-category-side-menu>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</ng-template>
+
+<ng-template #sidenavContent>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+            class="filter-row mat-elevation-z1 text-muted" fxShow="true" fxHide.gt-sm="true">
             <button mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>more_vert</mat-icon>
             </button>
@@ -63,5 +63,23 @@
                 OK
             </button>
         </div>
+</ng-template>
+<mat-sidenav-container fxShow="true" fxHide.lt-md="true">
+    <mat-sidenav #sidenav opened="true" mode="side" class="filter-sidenav" >
+        <ng-container *ngTemplateOutlet="categoryList"></ng-container>
+    </mat-sidenav>
+    
+    <mat-sidenav-content class="filter-row">
+        <ng-container *ngTemplateOutlet="sidenavContent"></ng-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-sidenav-container fxShow="true" fxHide.gt-sm="true">
+    <mat-sidenav #sidenav mode="over" class="filter-sidenav" >
+        <ng-container *ngTemplateOutlet="categoryList"></ng-container>
+    </mat-sidenav>
+    
+    <mat-sidenav-content class="filter-row">
+        <ng-container *ngTemplateOutlet="sidenavContent"></ng-container>
     </mat-sidenav-content>
 </mat-sidenav-container>

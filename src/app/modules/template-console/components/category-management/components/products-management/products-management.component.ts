@@ -36,13 +36,13 @@ export class ProductsManagementComponent implements OnInit {
 
     switch (event.mode) {
       case "Edit":
-        this.router.navigate(['add-product', { category: this.categoryId, product: event.product.id, isEdit: true }], { relativeTo: this.route });
+        this.router.navigate(['add-product', { category: this.categoryId, product: event.product.product.id, isEdit: true }], { relativeTo: this.route });
         break;
       case "View":
-        this.router.navigate(['add-product', { category: this.categoryId, product: event.product.id, isEdit: false }], { relativeTo: this.route });
+        this.router.navigate(['add-product', { category: this.categoryId, product: event.product.product.id, isEdit: false }], { relativeTo: this.route });
         break;
       case "Delete":
-        this.productService.deleteProduct(event.product.id).subscribe(() => this.RefreshProducts());
+        this.productService.deleteProduct(event.product.product.id).subscribe(() => this.RefreshProducts());
     }
   }
 

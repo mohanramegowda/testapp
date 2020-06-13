@@ -19,6 +19,7 @@ export class AddProductComponent implements OnInit {
   addOnBlur = true;
   imageFile: string | ArrayBuffer;
   imageFiles: File[] = [];
+  thumbnailFile: File;
   isEdit: boolean = true;
   public dialogRef: MatDialogRef<AddProductComponent>;
   @Inject(MAT_DIALOG_DATA) public data: IProduct;
@@ -63,6 +64,10 @@ export class AddProductComponent implements OnInit {
         // image1: new FormControl('', validations),
         description: new FormControl('', validations),
         keywords: new FormControl([]),
+        oldUnitPrice: new FormControl(''),
+        discount: new FormControl(''),
+        newProduct: new FormControl(false),
+        outOfStock: new FormControl(true)
       }
     )
   }
@@ -77,6 +82,10 @@ export class AddProductComponent implements OnInit {
     this.form.controls['brand'].setValue(response.brand);
     this.form.controls['addedDate'].setValue(response.addedDate);
     this.form.controls['description'].setValue(response.description);
+    this.form.controls['oldUnitPrice'].setValue(response.oldUnitPrice);
+    this.form.controls['discount'].setValue(response.discount);
+    this.form.controls['newProduct'].setValue(response.newProduct);
+    this.form.controls['outOfStock'].setValue(response.outOfStock);
     if (response.keywords) {
       response.keywords = response.keywords ?
         response.keywords.toString().split(',') : response.keywords;
@@ -140,6 +149,12 @@ export class AddProductComponent implements OnInit {
       this.imageFiles.push(<File>fileList[0]);
   }
 
+  onThumbnailFileChange(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList && fileList.length > 0)
+      this.thumbnailFile = <File>fileList[0];
+  }
+
   private getFormData(jsonObject: Object) {
     const formData = new FormData();
 
@@ -147,6 +162,7 @@ export class AddProductComponent implements OnInit {
       formData.append(key, jsonObject[key]);
     }
     formData.append('categoryId', this.route.snapshot.paramMap.get('category'));
+    formData.append(`file`, this.thumbnailFile);
     if (this.imageFiles && this.imageFiles.length > 0) {
       for (let i = 0; i < this.imageFiles.length; i++) {
         formData.append(`file`, this.imageFiles[i]);

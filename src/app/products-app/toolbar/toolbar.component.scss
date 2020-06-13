@@ -1,0 +1,149 @@
+.search-form {
+    border-radius: 22px;
+    overflow: hidden;
+    width: 90%;
+    input[type="text"] {
+        border: 0;
+        outline: none;
+        padding: 0 34px 0 12px;
+    }
+    .search-btn {
+        margin-left: -20px;
+        background: #fff !important;
+        box-shadow: none !important;
+        color: black;
+    }
+}
+
+// Shopping Cart related Styles from here
+
+$main-color: #6394f8;
+$light-text: #abb0be;
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.lighter-text {
+    color: #abb0be;
+}
+
+.main-color-text {
+    color: $main-color;
+}
+
+.container {
+    margin: auto;
+    width: 80%;
+}
+
+.badge {
+    background-color: #6394f8;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.shopping-cart {
+    margin: 20px 0;
+    float: right;
+    background: white;
+    position: relative;
+    border-radius: 3px;
+    padding: 20px;
+
+    .shopping-cart-header {
+        border-bottom: 1px solid #e8e8e8;
+        padding-bottom: 15px;
+
+        .shopping-cart-total {
+            float: right;
+        }
+    }
+
+    .shopping-cart-items {
+        padding-top: 20px;
+
+        li {
+            margin-bottom: 18px;
+        }
+
+        img {
+            float: left;
+            margin-right: 12px;
+        }
+
+        .item-name {
+            display: block;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+
+        .item-price {
+            color: $main-color;
+            margin-right: 8px;
+        }
+
+        .item-quantity {
+            color: $light-text;
+        }
+    }
+}
+
+.cart-icon {
+    color: #515783;
+    font-size: 24px;
+    margin-right: 7px;
+    float: left;
+}
+
+.button {
+    background: $main-color;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    border-radius: 3px;
+    font-size: 16px;
+    margin: 25px 0 15px 0;
+
+    &:hover {
+        background: lighten($main-color, 3%);
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.nav-bar {
+    background-color: #041e42;
+    color: #fff;
+}
+
+.search-bar {
+    background-color: #041e42;
+    padding-bottom: 20px;
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}

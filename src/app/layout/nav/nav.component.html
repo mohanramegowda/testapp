@@ -1,13 +1,12 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
     <button mat-icon-button (click)="sidenav.toggle()"  fxShow="true" fxHide.gt-sm="true">
         <mat-icon>menu</mat-icon>
     </button>
     <span>
-        Navigation bar
+        e Super Market
     </span>
     <span class="example-spacer"></span>
-    <div fxShow="true" fxHide.lt-md="true">
-        
+    <div fxShow="true" fxHide.lt-md="true">        
         <a mat-button *ngFor="let navItem of navItems" [routerLink]="[navItem.link]">{{navItem.title}}</a>
     </div>
 </mat-toolbar>

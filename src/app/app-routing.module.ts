@@ -8,6 +8,12 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('@layout/layout.module').then(m => m.LayoutModule)
+  },
+  
+  {
+    path: ':id/:name',
+    loadChildren: () =>
+      import('@products-app/products-app.module').then(m => m.ProductsAppModule)
   }
 ];
 

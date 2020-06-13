@@ -16,4 +16,11 @@ export interface IProduct{
     isEdit: boolean;
     dialogTitle: string;
     isReadonly: boolean;
+    images: any[];
+}
+
+export interface IProducts {
+    products: IProduct[];
+    loading: boolean;
+    message: string;
 }

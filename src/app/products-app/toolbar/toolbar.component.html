@@ -1,0 +1,96 @@
+<mat-toolbar class="nav-bar sticky">
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm="true">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>
+        {{templateName}}
+    </span>
+
+    <div fxFlex fxShow="false" fxShow.gt-sm fxLayoutAlign="center">
+        <form method="get" class="search-form" fxLayout="row">
+            <input type="text" placeholder="Type to search..." fxFlex>
+            <button mat-mini-fab type="button" class="search-btn mat-elevation-z0 text-muted">
+                <mat-icon>search</mat-icon>
+            </button>
+        </form>
+    </div>
+
+    <span class="example-spacer" fxShow="true" fxHide.gt-sm="true"></span>
+
+    <a mat-button (click)="getCartItems()" [matMenuTriggerFor]="cart">
+        <mat-icon>shopping_cart</mat-icon> Cart <span class="badge">3</span>
+    </a>
+    <mat-menu #cart="matMenu" [overlapTrigger]="false">
+        <!--Shopping cart items-->
+        <!-- <div class="container" > -->
+        <div class="shopping-cart" >
+            <div class="shopping-cart-header">
+                <mat-icon>shopping_cart</mat-icon><span class="badge">3</span>
+                <div class="shopping-cart-total">
+                    <span class="lighter-text">Total:</span>
+                    <span class="main-color-text">$2,229.97</span>
+                </div>
+            </div>
+            <!--end shopping-cart-header -->
+    
+            <ul class="shopping-cart-items">
+                <li class="clearfix">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+                    <span class="item-name">Sony DSC-RX100M III</span>
+                    <span class="item-price">$849.99</span>
+                    <span class="item-quantity">Quantity: 01</span>
+                </li>
+    
+                <li class="clearfix">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
+                    <span class="item-name">KS Automatic Mechanic...</span>
+                    <span class="item-price">$1,249.99</span>
+                    <span class="item-quantity">Quantity: 01</span>
+                </li>
+    
+                <li class="clearfix">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
+                    <span class="item-name">Kindle, 6" Glare-Free To...</span>
+                    <span class="item-price">$129.99</span>
+                    <span class="item-quantity">Quantity: 01</span>
+                </li>
+            </ul>
+    
+            <a href="#" class="button">Checkout</a>
+        </div>
+        <!--end shopping-cart -->
+        <!-- </div> -->
+        <!--end container -->
+        <!--Shopping cart items-->
+    </mat-menu>
+
+</mat-toolbar>
+
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav fxLayout="column">
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="[nav.link]" *ngFor="let nav of navItems" (click)="sidenav.toggle()">
+                <mat-icon>{{nav.icon}}</mat-icon>
+                {{nav.title}}
+                <mat-divider></mat-divider>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <!--Todo remove this and move it outside of the mat-sidenav-container-->
+    <mat-sidenav-content>
+        <div fxLayoutAlign="center center" fxHide="false" fxHide.gt-sm class="search-bar">
+            <form method="get" class="search-form" fxLayout="row">
+                <input type="text" placeholder="Type to search..." fxFlex>
+                <button mat-mini-fab type="button" class="search-btn mat-elevation-z0 text-muted">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </form>
+        </div>
+
+
+        <div #thisIsContent>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

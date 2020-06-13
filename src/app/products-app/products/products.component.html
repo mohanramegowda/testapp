@@ -1,0 +1,128 @@
+<div class="box-container">
+    <app-main-carousel [slides]="slides"></app-main-carousel>
+</div>
+<ng-template #categoryList>
+    <mat-accordion displayMode="flat" multi="true">
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h4>Categories</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <app-category-side-menu [categories]="productCategories" [categoryParentId]="-1"
+                    (change)="onChangeCategory($event)">
+                </app-category-side-menu>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h4>Price</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="text-muted">
+                <span>From: <b>${{priceFrom}}</b></span>
+                <span>To: <b>${{priceTo}}</b></span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="filter-price">
+                <mat-slider color="primary" max="2000" min="1" thumb-label="true" [(ngModel)]="priceFrom">
+                </mat-slider>
+                <mat-slider color="warn" max="2000" min="1" thumb-label="true" [(ngModel)]="priceTo">
+                </mat-slider>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h4>Color</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="filter-buttons">
+                <button mat-raised-button *ngFor="let color of colors" [style.background]="color.name"
+                    (click)="color.selected = !color.selected">
+                    <span *ngIf="!color.selected">&nbsp;</span>
+                    <mat-icon *ngIf="color.selected">check</mat-icon>
+                </button>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</ng-template>
+
+<ng-template #sidenavContent>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+        class="filter-row mat-elevation-z1 text-muted" fxShow="true" fxHide.gt-sm="true">
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </div>
+    <div fxLayout="row wrap" class="products-wrapper">
+        <div fxFlex="100" fxLayoutAlign="center">
+            <mat-spinner *ngIf="products.loading"></mat-spinner>
+            <span *ngIf="!products.loading">{{products.message}}</span>
+        </div>
+        <div fxFlex="25" fxFlex.sm="33.3" fxFlex.xs="50" class="col" *ngFor="let product of products.products">
+            <mat-card class="product-item text-center">
+                <mat-chip-list>
+                    <mat-chip color="warn" selected="true" *ngIf="product.product.discount">
+                        {{product.product.discount}}
+                    </mat-chip>
+                    <mat-chip selected="true" class="new-product" *ngIf="product.product.newProduct">
+                        NEW
+                    </mat-chip>
+                    <mat-chip selected="true" class="out-of-stock" *ngIf="product.product.outOfStock">
+                        OUT OF STOCK
+                    </mat-chip>
+                </mat-chip-list>
+                <a [routerLink]="['/products']" class="image-link">
+                    <img [src]="product.image ? product.image : ''" alt="">
+                    <!--Use images with 480*360 -->
+                </a>
+                <h4 class="category text-muted">{{product.product.name}}</h4>
+                <a [routerLink]="['/products']" class="title text-truncate">
+                    {{product.product.name}}
+                </a>
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
+                    <div fxLayout="column" fxLayoutAlign="center start">
+                        <span class="old-price text-muted">
+                            <span>
+                                {{product.product.oldUnitPrice}}
+                            </span>
+                        </span>
+                        <span class="new-price">$120</span>
+                    </div>
+                    <!-- <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating> -->
+                </div>
+                <div class="divider mt-2"></div>
+                <div class="icons">
+                    <a mat-button>
+                        <mat-icon>add_shopping_cart</mat-icon> Cart
+                    </a>
+                    <a mat-button>
+                        <mat-icon>add</mat-icon> Cart <mat-icon>remove</mat-icon>
+                    </a>
+                    <!-- <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls> -->
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</ng-template>
+<mat-sidenav-container fxShow="true" fxHide.lt-md="true" class="box-container">
+    <mat-sidenav #sidenav opened="true" mode="side" class="filter-sidenav">
+        <ng-container *ngTemplateOutlet="categoryList"></ng-container>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="filter-row">
+        <ng-container *ngTemplateOutlet="sidenavContent"></ng-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-sidenav-container fxShow="true" fxHide.gt-sm="true">
+    <mat-sidenav #sidenav mode="over" class="filter-sidenav">
+        <ng-container *ngTemplateOutlet="categoryList"></ng-container>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="filter-row">
+        <ng-container *ngTemplateOutlet="sidenavContent"></ng-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>

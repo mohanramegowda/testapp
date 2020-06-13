@@ -1,6 +1,6 @@
 <!-- Refere this link for usage
     https://stackblitz.com/edit/ngx-swiper-wrapper-demo?file=app%2Fapp.component.html -->
-<div class="box-container" fxLayout="column">
+<!-- <div class="box-container" fxLayout="column">
     <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
         <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="100%">
             <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
@@ -18,6 +18,36 @@
                     </div>
                 </swiper>
             </div>
+        </div>
+    </div>
+</div> -->
+<div class="box-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+    <div [swiper]="config" class="swiper-container" (indexChange)="onIndexChange($event)">
+        <div class="swiper-wrapper">
+            <div *ngFor="let slide of slides" class="swiper-slide">
+                <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                    <div class="slide-item swiper-lazy">
+                        <div fxLayout="column" fxLayoutAlign="center center" class="content">
+                            <h1>{{slide.title}}</h1>
+                            <h3>{{slide.subtitle}}</h3>
+                            <button mat-raised-button color="primary">Shop now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev">
+            <button mat-mini-fab color="primary" class="swipe-arrow">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+        <div class="swiper-button-next">
+            <button mat-mini-fab color="primary" class="swipe-arrow">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
         </div>
     </div>
 </div>

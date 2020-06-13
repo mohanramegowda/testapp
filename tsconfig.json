@@ -30,6 +30,9 @@
       ],
       "@layout/*":[
         "app/layout/*"
+      ],
+      "@products-app/*":[
+        "app/products-app/*"
       ]
     },
     "lib": [

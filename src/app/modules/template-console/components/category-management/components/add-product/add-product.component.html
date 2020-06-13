@@ -49,6 +49,26 @@
             </div>
             <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
                 <mat-form-field appearance="fill">
+                    <mat-label>Old Unit Price</mat-label>
+                    <input matInput placeholder="Enter Product's Old Unit Price" formControlName="oldUnitPrice"
+                        [readonly]="isEdit">
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Discount</mat-label>
+                    <input matInput placeholder="Enter Product's Discount if any" formControlName="discount"
+                        [readonly]="isEdit">
+                </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-checkbox formControlName="newProduct">New Product</mat-checkbox>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-checkbox formControlName="outOfStock">Out Of Stock</mat-checkbox>
+            </div>
+            <div class="example-container" fxFlex="48%" fxLayoutAlign="center center">
+                <mat-form-field appearance="fill">
                     <mat-label>Color</mat-label>
                     <input matInput placeholder="Enter Product Color" formControlName="color" [readonly]="isEdit">
                 </mat-form-field>
@@ -97,6 +117,12 @@
                             (matChipInputTokenEnd)="add($event)">
                     </mat-chip-list>
                 </mat-form-field>
+            </div>
+            <div class="example-container" fxFlex="95%" fxLayoutAlign="center center">
+                <div class="mat-form-field-wrapper file-input-container">
+                    <mat-label>Upload Product Thumbnail Image</mat-label>
+                    <input type="file" [disabled]="isEdit" (change)="onThumbnailFileChange($event)" />
+                </div>
             </div>
             <div class="example-container" fxFlex="95%" fxLayoutAlign="center center">
                 <div class="mat-form-field-wrapper file-input-container">
