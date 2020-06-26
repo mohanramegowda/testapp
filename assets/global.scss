@@ -2,7 +2,6 @@
 @import '~swiper/dist/css/swiper.min.css'; 
 html,
 body {
-  height: 100%;
 }
 body {
   margin: 0;
@@ -126,4 +125,22 @@ body {
   .search-btn{
       margin-left: 0; 
   }
+}
+
+.new-price {
+  font-size: 20px;
+  font-weight: 500;
+  color: #f44336;
+}
+
+.old-price {
+  text-decoration: line-through;
+}
+
+.out-of-stock{
+  background-color: grey !important;
+}
+
+.new-product {
+  background-color: green !important;
 }
