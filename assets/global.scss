@@ -1,5 +1,5 @@
 @import "~material-design-icons/iconfont/material-icons.css";
-@import '~swiper/dist/css/swiper.min.css'; 
+@import "~swiper/dist/css/swiper.min.css";
 html,
 body {
 }
@@ -10,7 +10,7 @@ body {
 
 .describer {
   font-family: Roboto-Medium;
-  width: 100%;  
+  width: 100%;
   padding: 5% 0 5% 0;
 }
 
@@ -117,13 +117,13 @@ body {
   src: url(../assets/fonts/Univers-LT-Std-45-Light_46331.ttf);
 }
 
-.search-form{ 
-  input[type=text]{ 
-      border-left: 0;
-      border-right: 1px solid #ccc;      
+.search-form {
+  input[type="text"] {
+    border-left: 0;
+    border-right: 1px solid #ccc;
   }
-  .search-btn{
-      margin-left: 0; 
+  .search-btn {
+    margin-left: 0;
   }
 }
 
@@ -137,7 +137,7 @@ body {
   text-decoration: line-through;
 }
 
-.out-of-stock{
+.out-of-stock {
   background-color: grey !important;
 }
 
@@ -148,4 +148,24 @@ body {
 .nav-bar {
   background-color: #041e42;
   color: #fff;
+}
+
+.p {
+  padding: 2rem;
+}
+
+.p-t {
+  padding-top: 2rem;
+}
+
+.p-b {
+  padding-bottom: 2rem;
+}
+
+.p-l {
+  padding-left: 2rem;
+}
+
+.p-r {
+  padding-right: 2rem;
 }
