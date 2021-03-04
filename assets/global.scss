@@ -1,7 +1,7 @@
 @import "~material-design-icons/iconfont/material-icons.css";
-@import "~swiper/dist/css/swiper.min.css";
 html,
 body {
+  height: 100%;
 }
 body {
   margin: 0;
@@ -9,9 +9,10 @@ body {
 }
 
 .describer {
-  font-family: Roboto-Medium;
   width: 100%;
-  padding: 5% 0 5% 0;
+  background-color: #0c6645;
+  color: white;
+  padding-bottom: 10%;
 }
 
 .describer-heading {
@@ -36,9 +37,10 @@ body {
 
 .describer-link-text {
   font-size: 24px;
+  color: white;
   line-height: 1.8em;
   border-bottom-style: solid;
-  border-color: black;
+  border-color: white;
   margin-right: 10px;
   cursor: pointer;
 }
@@ -67,7 +69,7 @@ body {
   flex: 1 1 auto;
 }
 
-.general-title {
+.school-title {
   display: block;
   word-wrap: break-word;
 }
@@ -115,57 +117,4 @@ body {
 @font-face {
   font-family: UniversLTStd-Light;
   src: url(../assets/fonts/Univers-LT-Std-45-Light_46331.ttf);
-}
-
-.search-form {
-  input[type="text"] {
-    border-left: 0;
-    border-right: 1px solid #ccc;
-  }
-  .search-btn {
-    margin-left: 0;
-  }
-}
-
-.new-price {
-  font-size: 20px;
-  font-weight: 500;
-  color: #f44336;
-}
-
-.old-price {
-  text-decoration: line-through;
-}
-
-.out-of-stock {
-  background-color: grey !important;
-}
-
-.new-product {
-  background-color: green !important;
-}
-
-.nav-bar {
-  background-color: #041e42;
-  color: #fff;
-}
-
-.p {
-  padding: 2rem;
-}
-
-.p-t {
-  padding-top: 2rem;
-}
-
-.p-b {
-  padding-bottom: 2rem;
-}
-
-.p-l {
-  padding-left: 2rem;
-}
-
-.p-r {
-  padding-right: 2rem;
 }
